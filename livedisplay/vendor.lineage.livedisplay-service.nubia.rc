@@ -1,0 +1,18 @@
+on boot
+    trigger set-lineage-nubia-livedisplay-perms
+
+on init
+    trigger set-lineage-nubia-livedisplay-perms
+
+on set-lineage-nubia-livedisplay-perms
+    # LiveDisplay HBM
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm
+    chmod 0664 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm
+    # LiveDisplay reading
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/reading_mode
+    chmod 0664 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/reading_mode
+
+service vendor.livedisplay-nubia /vendor/bin/hw/vendor.lineage.livedisplay-service.nubia
+    class late_start
+    user system
+    group system

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string-array name="config_deviceKeyHandlerLibs" translatable="false">
+        <item>/system_ext/priv-app/NubiaParts/NubiaParts.apk</item>
+        <item>/system_ext/priv-app/LineageParts/LineageParts.apk</item>
+    </string-array>
+
+    <string-array name="config_deviceKeyHandlerClasses" translatable="false">
+        <item>org.lineageos.settings.trigger.TriggerKeyHandlerImpl</item>
+        <item>org.lineageos.lineageparts.gestures.KeyHandler</item>
+    </string-array>
+
+    <string-array name="config_externalLineageServices" translatable="false">
+        <item>org.lineageos.platform.internal.ProfileManagerService</item>
+        <item>org.lineageos.platform.internal.LineageHardwareService</item>
+        <item>org.lineageos.platform.internal.TrustInterfaceService</item>
+        <item>org.lineageos.platform.internal.LineageSettingsService</item>
+        <item>org.lineageos.platform.internal.LineageGlobalActionsService</item>
+        <item>org.lineageos.platform.internal.health.HealthInterfaceService</item>
+    </string-array>
+
+    <bool name="config_enableLiveDisplay">false</bool>
+</resources>

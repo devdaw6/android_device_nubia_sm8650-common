@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/trigger_buttons_title">
+
+    <SwitchPreferenceCompat
+        android:key="trigger_enable"
+        android:title="@string/trigger_buttons_enable_title"
+        android:summary="@string/trigger_buttons_enable_summary" />
+
+    <PreferenceCategory
+        android:title="@string/trigger_green_category">
+
+        <ListPreference
+            android:key="trigger_action_green"
+            android:title="@string/trigger_green_action_title"
+            android:entries="@array/trigger_action_entries"
+            android:entryValues="@array/trigger_action_values"
+            android:defaultValue="0" />
+
+        <Preference
+            android:key="trigger_app"
+            android:title="@string/trigger_choose_app_title"
+            android:summary="@string/trigger_app_not_set" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/trigger_extra_modes_title">
+
+        <SwitchPreferenceCompat
+            android:key="trigger_recorder_mode"
+            android:title="@string/trigger_recorder_title"
+            android:summary="@string/trigger_recorder_summary" />
+
+        <SwitchPreferenceCompat
+            android:key="trigger_flashlight_mode"
+            android:title="@string/trigger_flashlight_title"
+            android:summary="@string/trigger_flashlight_summary" />
+    </PreferenceCategory>
+</PreferenceScreen>

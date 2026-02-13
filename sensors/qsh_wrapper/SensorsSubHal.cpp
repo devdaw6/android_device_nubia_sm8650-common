@@ -1,0 +1,176 @@
+/*
+ * Copyright (C) 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "SensorsSubHal.h"
+
+#include <android-base/logging.h>
+#include <dlfcn.h>
+#include <hardware/sensors.h>
+
+using ::android::hardware::sensors::V1_0::SensorFlagBits;
+using ::android::hardware::sensors::V2_0::implementation::ScopedWakelock;
+using ::android::hardware::sensors::V2_1::implementation::ISensorsSubHal;
+
+namespace android {
+namespace hardware {
+namespace sensors {
+namespace V2_1 {
+namespace subhal {
+namespace implementation {
+namespace qsh_wrapper {
+
+namespace {
+constexpr auto kLibName = "sensors.qsh.so";
+constexpr auto kTypePickUpSensor = 33181000;
+
+bool patchZtePickupSensor(SensorInfo& sensor) {
+    if (static_cast<int32_t>(sensor.type) != kTypePickUpSensor) {
+        return true;
+    }
+
+    // Implement only the wake-up version of this sensor.
+    if (!(sensor.flags & static_cast<uint32_t>(SensorFlagBits::WAKE_UP))) {
+        return false;
+    }
+
+    sensor.type = SensorType::PICK_UP_GESTURE;
+    sensor.typeAsString = SENSOR_STRING_TYPE_PICK_UP_GESTURE;
+    sensor.maxRange = 1;
+
+    return true;
+}
+};  // anonymous namespace
+
+SensorsSubHal::SensorsSubHal()
+    : lib_handle_(dlopen(kLibName, RTLD_NOW), [](void* p) {
+          if (p) dlclose(p);
+      }) {
+    if (!lib_handle_) {
+        LOG(FATAL) << __func__ << ": dlopen " << kLibName << " failed, exiting";
+    }
+
+    auto get_sub_hal = reinterpret_cast<ISensorsSubHal* (*)(uint32_t*)>(
+            dlsym(lib_handle_.get(), "sensorsHalGetSubHal_2_1"));
+    uint32_t version;
+    impl_ = get_sub_hal(&version);
+}
+
+Return<Result> SensorsSubHal::setOperationMode(OperationMode mode) {
+    return impl_->setOperationMode(mode);
+}
+
+Return<Result> SensorsSubHal::activate(int32_t sensor_handle, bool enabled) {
+    return impl_->activate(sensor_handle, enabled);
+}
+
+Return<Result> SensorsSubHal::batch(int32_t sensor_handle, int64_t sampling_period_ns,
+                                    int64_t max_report_latency_ns) {
+    return impl_->batch(sensor_handle, sampling_period_ns, max_report_latency_ns);
+}
+
+Return<Result> SensorsSubHal::flush(int32_t sensor_handle) {
+    return impl_->flush(sensor_handle);
+}
+
+Return<void> SensorsSubHal::registerDirectChannel(const SharedMemInfo& mem,
+                                                  ISensors::registerDirectChannel_cb _hidl_cb) {
+    return impl_->registerDirectChannel(mem, _hidl_cb);
+}
+
+Return<Result> SensorsSubHal::unregisterDirectChannel(int32_t channel_handle) {
+    return impl_->unregisterDirectChannel(channel_handle);
+}
+
+Return<void> SensorsSubHal::configDirectReport(int32_t sensor_handle, int32_t channel_handle,
+                                               RateLevel rate,
+                                               ISensors::configDirectReport_cb _hidl_cb) {
+    return impl_->configDirectReport(sensor_handle, channel_handle, rate, _hidl_cb);
+}
+
+Return<void> SensorsSubHal::getSensorsList_2_1(ISensors::getSensorsList_2_1_cb _hidl_cb) {
+    return impl_->getSensorsList_2_1([&](const auto& _hidl_out_list) {
+        std::vector<SensorInfo> sensors;
+
+        for (auto sensor : _hidl_out_list) {
+            bool keep = patchZtePickupSensor(sensor);
+            if (!keep) {
+                continue;
+            }
+
+            if (sensor.type == SensorType::PICK_UP_GESTURE) {
+                pickup_sensor_handles_.insert(sensor.sensorHandle);
+            }
+
+            sensors.push_back(sensor);
+        }
+
+        _hidl_cb(sensors);
+    });
+}
+
+Return<Result> SensorsSubHal::injectSensorData_2_1(const Event& event) {
+    return impl_->injectSensorData_2_1(event);
+}
+
+Return<void> SensorsSubHal::debug(const hidl_handle& fd, const hidl_vec<hidl_string>& args) {
+    return impl_->debug(fd, args);
+}
+
+const std::string SensorsSubHal::getName() {
+    return impl_->getName();
+}
+
+Return<Result> SensorsSubHal::initialize(const sp<IHalProxyCallback>& hal_proxy_callback) {
+    hal_proxy_callback_ = hal_proxy_callback;
+    return impl_->initialize(this);
+}
+
+Return<void> SensorsSubHal::onDynamicSensorsConnected(
+        const hidl_vec<V1_0::SensorInfo>& sensor_infos) {
+    return hal_proxy_callback_->onDynamicSensorsConnected(sensor_infos);
+}
+
+Return<void> SensorsSubHal::onDynamicSensorsDisconnected(const hidl_vec<int32_t>& sensor_handles) {
+    return hal_proxy_callback_->onDynamicSensorsDisconnected(sensor_handles);
+}
+
+Return<void> SensorsSubHal::onDynamicSensorsConnected_2_1(
+        const hidl_vec<V2_1::SensorInfo>& sensor_infos) {
+    return hal_proxy_callback_->onDynamicSensorsConnected_2_1(sensor_infos);
+}
+
+void SensorsSubHal::postEvents(const std::vector<Event>& events, ScopedWakelock wakelock) {
+    std::vector<Event> filtered_events;
+
+    for (const auto& e : events) {
+        if (pickup_sensor_handles_.count(e.sensorHandle) > 0
+            && e.u.scalar != 1) {
+            continue;
+        }
+
+        filtered_events.push_back(e);
+    }
+
+    hal_proxy_callback_->postEvents(filtered_events, std::move(wakelock));
+}
+
+ScopedWakelock SensorsSubHal::createScopedWakelock(bool lock) {
+    return hal_proxy_callback_->createScopedWakelock(lock);
+}
+
+}  // namespace qsh_wrapper
+}  // namespace implementation
+}  // namespace subhal
+}  // namespace V2_1
+}  // namespace sensors
+}  // namespace hardware
+}  // namespace android
+
+ISensorsSubHal* sensorsHalGetSubHal_2_1(uint32_t* version) {
+    static ::android::hardware::sensors::V2_1::subhal::implementation::qsh_wrapper::SensorsSubHal
+            sub_hal;
+    *version = SUB_HAL_2_1_VERSION;
+    return &sub_hal;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<exceptions>
+    <exception package="org.lineageos.settings">
+        <!-- Needed for Trigger recorder -->
+        <permission name="android.permission.RECORD_AUDIO" fixed="false"/>
+    </exception>
+</exceptions>

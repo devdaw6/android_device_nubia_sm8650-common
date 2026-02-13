@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string-array name="trigger_action_entries">
+        <item>@string/trigger_action_camera</item>
+        <item>@string/trigger_action_vibration</item>
+        <item>@string/trigger_action_app</item>
+    </string-array>
+
+    <string-array name="trigger_action_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

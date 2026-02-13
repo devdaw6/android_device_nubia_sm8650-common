@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Trigger buttons -->
+    <string name="trigger_buttons_title">Side trigger</string>
+    <string name="trigger_buttons_summary">Configure the side trigger</string>
+    <string name="trigger_buttons_enable_title">Enable side trigger</string>
+    <string name="trigger_buttons_enable_summary">Allow the side trigger to function normally</string>
+    <string name="trigger_green_category">Trigger</string>
+    <string name="trigger_green_action_title">Trigger action</string>
+    <string name="trigger_action_camera">Camera</string>
+    <string name="trigger_action_vibration">Vibration</string>
+    <string name="trigger_action_app">Open app</string>
+    <string name="trigger_choose_app_title">Choose app</string>
+    <string name="trigger_app_not_set">No app selected</string>
+    <string name="trigger_extra_modes_title">Extra modes</string>
+    <string name="trigger_recorder_title">Voice recorder</string>
+    <string name="trigger_recorder_summary">Start and stop recording</string>
+    <string name="trigger_recorder_notif_recording">Recording in progress</string>
+    <string name="trigger_recorder_toast_started">Recording started</string>
+    <string name="trigger_recorder_toast_stopped">Recording stopped</string>
+    <string name="trigger_flashlight_title">Flashlight</string>
+    <string name="trigger_flashlight_summary">Turn on and off</string>
+
+</resources>

@@ -1,0 +1,16 @@
+type devicesettings_app, domain;
+app_domain(devicesettings_app)
+
+# Allow NubiaParts to use Lineage LiveDisplay AIDL HAL.
+hal_client_domain(devicesettings_app, hal_lineage_livedisplay)
+
+allow devicesettings_app {
+    app_api_service
+    mediaserver_service
+}:service_manager find;
+
+allow devicesettings_app surfaceflinger_service:service_manager find;
+binder_call(devicesettings_app, surfaceflinger)
+
+rw_dir_file(devicesettings_app, sysfs_fan)
+rw_dir_file(devicesettings_app, proc_touchkey)

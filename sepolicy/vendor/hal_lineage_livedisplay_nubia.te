@@ -1,0 +1,27 @@
+type hal_lineage_livedisplay_nubia, domain;
+hal_server_domain(hal_lineage_livedisplay_nubia, hal_lineage_livedisplay)
+
+type hal_lineage_livedisplay_nubia_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_lineage_livedisplay_nubia)
+
+binder_call(hal_lineage_livedisplay_nubia, servicemanager)
+
+# Allow LiveDisplay HAL to use vendor binder
+vndbinder_use(hal_lineage_livedisplay_nubia)
+
+# Allow LiveDisplay to access vendor display property
+get_prop(hal_lineage_livedisplay_nubia, vendor_display_prop)
+
+# Allow LiveDisplay to access qdisplay service if needed
+allow hal_lineage_livedisplay_nubia qdisplay_service:service_manager find;
+binder_call(hal_lineage_livedisplay_nubia, hal_graphics_composer_default)
+
+# Allow LiveDisplay to read sysfs graphics hierarchy
+r_dir_file(hal_lineage_livedisplay_nubia, sysfs_graphics)
+
+# Allow LiveDisplay to store files under /data/vendor/display
+allow hal_lineage_livedisplay_nubia display_vendor_data_file:dir rw_dir_perms;
+allow hal_lineage_livedisplay_nubia display_vendor_data_file:file create_file_perms;
+
+# Allow access to LiveDisplay sysfs tunables (HBM)
+allow hal_lineage_livedisplay_nubia sysfs_livedisplay_tuneable:file rw_file_perms;

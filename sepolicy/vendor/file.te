@@ -1,0 +1,8 @@
+# Camera
+type vendor_persist_camera_file, file_type;
+
+# Fingerprint
+type vendor_persist_fingerprint_file, file_type;
+
+# Touchscreen
+type vendor_sysfs_touchpanel, fs_type, sysfs_type;

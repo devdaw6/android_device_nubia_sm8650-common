@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Trigger buttons -->
+    <string name="trigger_buttons_title">Боковой триггер</string>
+    <string name="trigger_buttons_summary">Настройка бокового триггера</string>
+    <string name="trigger_buttons_enable_title">Включить боковой триггер</string>
+    <string name="trigger_buttons_enable_summary">Разрешить работу бокового триггера</string>
+    <string name="trigger_green_category">Триггер</string>
+    <string name="trigger_green_action_title">Действие триггера</string>
+    <string name="trigger_action_camera">Камера</string>
+    <string name="trigger_action_vibration">Вибрация</string>
+    <string name="trigger_action_app">Открыть приложение</string>
+    <string name="trigger_choose_app_title">Выбрать приложение</string>
+    <string name="trigger_app_not_set">Приложение не выбрано</string>
+    <string name="trigger_extra_modes_title">Дополнительные режимы</string>
+    <string name="trigger_recorder_title">Диктофон</string>
+    <string name="trigger_recorder_summary">Запуск и остановка записи</string>
+    <string name="trigger_recorder_notif_recording">Идёт запись</string>
+    <string name="trigger_recorder_toast_started">Запись начата</string>
+    <string name="trigger_recorder_toast_stopped">Запись остановлена</string>
+    <string name="trigger_flashlight_title">Фонарик</string>
+    <string name="trigger_flashlight_summary">Включить или выключить</string>
+
+</resources>
