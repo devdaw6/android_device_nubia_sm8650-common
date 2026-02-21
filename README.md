@@ -17,8 +17,10 @@
 - Radio defaults tuned for battery: `persist.vendor.radio.enableadvancedscan=false`, higher signal/test timers, and default network set to LTE/WCDMA/GSM (`ro.telephony.default_network=9,9`) so 5G remains user-switchable.
 - Opportunistic/data-switch carrier hysteresis timers increased to `21600000/21600000/21600000` and post-switch scan timer to `43200000` to reduce periodic secondary-SIM churn.
 - Opportunistic ping-pong/backoff timers (including `opportunistic.5g_*`) were also raised to multi-hour values and data-switch ping test was disabled to suppress repeated modem churn.
+- Added generic MCC `250` anti-churn fallback: APN retry after disconnect raised to `3600000`, plus cross-SIM/opportunistic data-switch paths disabled at generic profile level.
 - Bluetooth defaults trimmed for background efficiency: disabled `OPP` and `PAN (NAP/PANU)` profiles; kept call/audio/watch-critical profiles (`HFP/A2DP/AVRCP/GATT/PBAP/MAP`).
 - Wakelock-focused tune-ups from logs: less Wi-Fi neighbor/multicast wake activity and less aggressive screen-off dormancy polling in DPM.
+- Wi-Fi connected/disconnected screen-on scan schedules were relaxed further (removed 120s connected start, extended tails to 1200/2400s) and low-score scan period raised to 900s.
 - LMKD tuned for earlier background cleanup (`ro.lmk.minfree` increased, pressure controls adjusted).
 - Read-ahead and swappiness reduced after boot to lower background I/O activity.
 - Swap creation disabled via `ro.vendor.qti.config.swap=false`; global swappiness forced to 25 post-boot.

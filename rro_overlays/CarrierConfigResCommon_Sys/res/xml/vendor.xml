@@ -3377,7 +3377,15 @@
         <boolean name="carrier_wfc_supports_ims_preferred_bool" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
         <int name="carrier_default_wfc_ims_roaming_mode_int" value="1" />
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3000" />
+        <!-- Keep retry/backoff conservative on generic RU profile to avoid reconnect churn. -->
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
+        <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
+        <int name="opp_auto_data_switch_policy_int" value="0" />
+        <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
+        <boolean name="ping_test_before_data_switch_bool" value="false" />
+        <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
+        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
     </carrier_config>
     <carrier_config mcc="250" mnc="02">
         <!-- Keep this after generic mcc=250 block to guarantee per-operator override. -->
