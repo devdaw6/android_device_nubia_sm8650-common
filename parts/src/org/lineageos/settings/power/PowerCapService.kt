@@ -221,12 +221,12 @@ class PowerCapService : Service() {
 
     companion object {
         private const val TAG = "PowerCapService"
-        private const val POLL_ACTIVE_MS = 8_000L
-        private const val POLL_IDLE_MS = 30_000L
-        private const val POLL_SYSTEM_MODE_MS = 5_000L
+        private const val POLL_ACTIVE_MS = 15_000L
+        private const val POLL_IDLE_MS = 60_000L
+        private const val POLL_SYSTEM_MODE_MS = 10_000L
         private const val POLL_STATIC_ACTIVE_MS = 60_000L
-        private const val POLL_STATIC_IDLE_MS = 180_000L
-        private const val SCREEN_OFF_DEEP_DELAY_MS = 45_000L
+        private const val POLL_STATIC_IDLE_MS = 300_000L
+        private const val SCREEN_OFF_DEEP_DELAY_MS = 5_000L
 
         fun startOrStop(context: Context) {
             val enabled = getInt(context, "powercap_enable", 1) == 1

@@ -26,7 +26,7 @@
     <integer name="config_wifiHardwareSoftapMaxClientCount" translatable="false">32</integer>
 
     <!-- Boolean indicating performing a partial initial scan is enabled -->
-    <bool name="config_wifiEnablePartialInitialScan" translatable="false">true</bool>
+    <bool name="config_wifiEnablePartialInitialScan" translatable="false">false</bool>
 
     <!-- Boolean indicating that only configurations that have the same pre-shared key will be linked -->
     <bool name="config_wifi_only_link_same_credential_configurations" translatable="false">false</bool>
@@ -76,7 +76,7 @@
     <bool name="config_wifiSoftapAcsIncludeDfs" translatable="false">true</bool>
 
     <!-- integer indicating additional disconnect delay (in ms) after IMS onLost() indication is received -->
-    <integer name="config_wifiDelayDisconnectOnImsLostMs" translatable="false">1000</integer>
+    <integer name="config_wifiDelayDisconnectOnImsLostMs" translatable="false">5000</integer>
 
     <!-- Enable Aware NDP interface selection on interface that already has network set up.
      Note: the default AOSP Android does not support multiple networks on the same Aware NDI.

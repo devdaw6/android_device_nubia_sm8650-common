@@ -9,6 +9,13 @@
 
 ## Recent power-focused defaults
 
+- Latest aggressive pass (2026-02-22):
+  - RU carrier overrides tightened for both `250/02` and `250/99` at all matching blocks to suppress IMS/data-switch churn.
+  - Wi-Fi scan cadence made stricter: connected scan starts at `420s`, disconnected at `420s`, tails extended to `3600/5400s`; moving PNO set to `3600000ms`.
+  - Wi-Fi partial initial scan disabled in common/target overlays; IMS-lost Wi-Fi disconnect delay increased to `5000ms`.
+  - Radio timers raised again: `persist.vendor.radio.signalDelay=30`, `testTimerA/B=180`.
+  - PowerCap made more aggressive: lower screen-on/soft-off CPU/GPU caps, deep cap delay reduced to `15s`, and service poll intervals relaxed.
+
 - Default display refresh left at framework/vendor defaults (0 / peak 120).
 - PowerHAL camera-related boosts and post-boot input/governor aggressiveness reduced.
 - PowerCap service switched to smart 2-stage screen-off mode: soft cap first, deeper cap after 45s.

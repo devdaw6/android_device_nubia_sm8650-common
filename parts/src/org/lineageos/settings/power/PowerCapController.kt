@@ -14,21 +14,21 @@ object PowerCapController {
     private val warnedUnavailableNodes = mutableSetOf<String>()
 
     // Screen-on capped profile.
-    private const val CAP_ON_LITTLE = 902_400      // ~0.90 GHz
-    private const val CAP_ON_BIG = 1_401_600       // ~1.40 GHz
-    private const val CAP_ON_PRIME = 1_593_600     // ~1.59 GHz
+    private const val CAP_ON_LITTLE = 672_000      // ~0.67 GHz
+    private const val CAP_ON_BIG = 960_000         // ~0.96 GHz
+    private const val CAP_ON_PRIME = 1_017_600     // ~1.02 GHz
 
     // Extra-low screen-off profile.
-    private const val CAP_OFF_SOFT_LITTLE = 672_000  // ~0.67 GHz
-    private const val CAP_OFF_SOFT_BIG = 1_190_400   // ~1.19 GHz
-    private const val CAP_OFF_SOFT_PRIME = 1_363_200 // ~1.36 GHz
+    private const val CAP_OFF_SOFT_LITTLE = 460_800  // ~0.46 GHz
+    private const val CAP_OFF_SOFT_BIG = 844_800     // ~0.84 GHz
+    private const val CAP_OFF_SOFT_PRIME = 902_400   // ~0.90 GHz
 
     private const val CAP_OFF_LITTLE = 364_800     // ~0.36 GHz
-    private const val CAP_OFF_BIG = 729_600        // ~0.73 GHz
-    private const val CAP_OFF_PRIME = 787_200      // ~0.79 GHz
+    private const val CAP_OFF_BIG = 614_400        // ~0.61 GHz
+    private const val CAP_OFF_PRIME = 672_000      // ~0.67 GHz
 
     // GPU (best-effort; skip if not writable)
-    private const val CAP_ON_GPU = 244_224_000
+    private const val CAP_ON_GPU = 152_640_000
     private const val CAP_OFF_GPU = 152_640_000
     private const val GPU_PATH = "/sys/class/kgsl/kgsl-3d0/devfreq"
     private const val GPU_MAX_PATH = "$GPU_PATH/max_freq"
