@@ -10,12 +10,14 @@ import android.content.Context
 import android.content.Intent
 
 import org.lineageos.settings.trigger.TriggerController
+import org.lineageos.settings.power.PowerCapService
 
 class BootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
             TriggerController.restoreSettings(context)
+            PowerCapService.startOrStop(context)
         }
     }
 }

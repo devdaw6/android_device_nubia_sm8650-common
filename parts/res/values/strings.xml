@@ -4,6 +4,10 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- Nubia settings root -->
+    <string name="nubia_settings_title">Nubia settings</string>
+    <string name="nubia_settings_summary">Side trigger and performance caps</string>
+
     <!-- Trigger buttons -->
     <string name="trigger_buttons_title">Side trigger</string>
     <string name="trigger_buttons_summary">Configure the side trigger</string>
@@ -24,5 +28,18 @@
     <string name="trigger_recorder_toast_stopped">Recording stopped</string>
     <string name="trigger_flashlight_title">Flashlight</string>
     <string name="trigger_flashlight_summary">Turn on and off</string>
+
+    <!-- Power cap -->
+    <string name="powercap_title">Performance caps</string>
+    <string name="powercap_summary">Limit CPU/GPU by default; allow full speed per app</string>
+    <string name="powercap_enable_title">Enable caps</string>
+    <string name="powercap_enable_summary">Lower max CPU/GPU clocks for better battery life</string>
+    <string name="powercap_whitelist_title">Apps with full performance</string>
+    <string name="powercap_whitelist_summary">Selected apps can use full clocks when in foreground</string>
+    <string name="powercap_allow_full_title">Allow full speed for whitelisted apps</string>
+    <string name="powercap_allow_full_summary">When active app is in the list, restore stock clocks</string>
+    <string name="powercap_respect_system_modes_title">Respect system modes</string>
+    <string name="powercap_respect_system_modes_summary">Pause caps in known performance/game modes; keep caps in Battery Saver</string>
+    <string name="powercap_usage_hint">Grant usage access if requested to detect foreground app</string>
 
 </resources>

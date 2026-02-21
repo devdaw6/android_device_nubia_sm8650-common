@@ -14,3 +14,4 @@ binder_call(devicesettings_app, surfaceflinger)
 
 rw_dir_file(devicesettings_app, sysfs_fan)
 rw_dir_file(devicesettings_app, proc_touchkey)
+allow devicesettings_app sysfs_powercap:file rw_file_perms;

@@ -4,6 +4,10 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- Nubia settings root -->
+    <string name="nubia_settings_title">Настройки Nubia</string>
+    <string name="nubia_settings_summary">Боковой триггер и ограничение частот</string>
+
     <!-- Trigger buttons -->
     <string name="trigger_buttons_title">Боковой триггер</string>
     <string name="trigger_buttons_summary">Настройка бокового триггера</string>
@@ -24,5 +28,18 @@
     <string name="trigger_recorder_toast_stopped">Запись остановлена</string>
     <string name="trigger_flashlight_title">Фонарик</string>
     <string name="trigger_flashlight_summary">Включить или выключить</string>
+
+    <!-- Power cap -->
+    <string name="powercap_title">Ограничение частот</string>
+    <string name="powercap_summary">По умолчанию режет CPU/GPU, выбранным приложениям даёт максимум</string>
+    <string name="powercap_enable_title">Включить ограничение</string>
+    <string name="powercap_enable_summary">Занижает максимальные частоты CPU/GPU ради автономности</string>
+    <string name="powercap_whitelist_title">Приложения с полным быстродействием</string>
+    <string name="powercap_whitelist_summary">Выбранные приложения получают стоковые частоты на переднем плане</string>
+    <string name="powercap_allow_full_title">Разрешить максимум для списка</string>
+    <string name="powercap_allow_full_summary">Если активное приложение в списке, возвращать стоковые частоты</string>
+    <string name="powercap_respect_system_modes_title">Учитывать системные режимы</string>
+    <string name="powercap_respect_system_modes_summary">Отключать ограничение в известных режимах производительности/игры; в энергосбережении оставлять ограничение</string>
+    <string name="powercap_usage_hint">Если попросит доступ к активности, выдайте, чтобы видеть активное приложение</string>
 
 </resources>

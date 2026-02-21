@@ -24,10 +24,10 @@
 
     <!-- Defines the minimum period between scans triggered due to low score.
     This is used together with config_wifiConnectedScoreThresholdToTriggerScanForMbb.-->
-    <integer name="config_wifiLowConnectedScoreScanPeriodSeconds" translatable="false">20</integer>
+    <integer name="config_wifiLowConnectedScoreScanPeriodSeconds" translatable="false">150</integer>
 
     <!-- Boolean indicating that enable roaming between linked networks -->
-    <bool name="config_wifiEnableLinkedNetworkRoaming" translatable="false">true</bool>
+    <bool name="config_wifiEnableLinkedNetworkRoaming" translatable="false">false</bool>
 
     <!-- Wifi driver supports Automatic channel selection (ACS) for softap -->
     <bool name="config_wifi_softap_acs_supported" translatable="false">true</bool>
@@ -68,28 +68,28 @@
 
     <!-- Array describing scanning schedule in seconds when device is disconnected and screen is on -->
     <integer-array name="config_wifiDisconnectedScanIntervalScheduleSec" translatable="false">
-        <item>20</item>
-        <item>20</item>
-        <item>20</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
         <item>60</item>
-        <item>100</item>
-        <item>160</item>
+        <item>90</item>
+        <item>120</item>
+        <item>180</item>
+        <item>240</item>
+        <item>300</item>
+        <item>420</item>
+        <item>600</item>
+        <item>900</item>
     </integer-array>
 
     <!-- Array describing scanning schedule in seconds when device is connected and screen is on -->
     <integer-array name="config_wifiConnectedScanIntervalScheduleSec" translatable="false">
-        <item>20</item>
-        <item>20</item>
-        <item>20</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
-        <item>60</item>
-        <item>100</item>
-        <item>160</item>
+        <item>75</item>
+        <item>90</item>
+        <item>120</item>
+        <item>180</item>
+        <item>240</item>
+        <item>300</item>
+        <item>420</item>
+        <item>600</item>
+        <item>900</item>
     </integer-array>
     <integer name="config_wifiDisableReasonNoInternetTemporaryThreshold" translatable="false">2</integer>
     <integer name="config_wifiDisableReasonNoInternetPermanentThreshold" translatable="false">2</integer>
@@ -106,18 +106,18 @@
     <integer name="config_wifiBssidBlocklistMonitorAbnormalDisconnectThreshold" translatable="false">6</integer>
 
     <!-- Do a single scan when cell data loss is detected. -->
-    <bool name="config_wifiScanOnCellularDataLossEnabled" translatable="false">true</bool>
+    <bool name="config_wifiScanOnCellularDataLossEnabled" translatable="false">false</bool>
 
     <!-- Initial PNO scan interval, in milliseconds, when the device is moving (i.e.
          WifiManager.DEVICE_MOBILITY_STATE_UNKNOWN, WifiManager.DEVICE_MOBILITY_STATE_HIGH_MVMT, or
          WifiManager.DEVICE_MOBILITY_STATE_LOW_MVMT).
          The scan interval backs off from this initial interval on subsequent scans.
          This scan is performed when screen is off and disconnected. -->
-    <integer name="config_wifiMovingPnoScanIntervalMillis" translatable="false">30000</integer>
+    <integer name="config_wifiMovingPnoScanIntervalMillis" translatable="false">420000</integer>
 
     <!-- Enable Make-Before-Break Wifi network switching.
          Note: this is conditional on the device supporting dual concurrent STAs. -->
-    <bool name="config_wifiMultiStaNetworkSwitchingMakeBeforeBreakEnabled" translatable="false">true</bool>
+    <bool name="config_wifiMultiStaNetworkSwitchingMakeBeforeBreakEnabled" translatable="false">false</bool>
 
     <!-- Enable concurrent peer to peer + internet connectivity
          Note: this is conditional on the device supporting dual concurrent STAs. -->

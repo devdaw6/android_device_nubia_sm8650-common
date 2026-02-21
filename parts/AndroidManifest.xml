@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -40,11 +41,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Trigger buttons -->
+        <!-- Nubia settings root -->
         <activity
-            android:name=".trigger.TriggerActivity"
-            android:label="@string/trigger_buttons_title"
-            android:exported="false">
+            android:name=".NubiaSettingsActivity"
+            android:label="@string/nubia_settings_title"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -63,8 +64,20 @@
                 android:value="-1000" />
             <meta-data
                 android:name="com.android.settings.summary"
-                android:resource="@string/trigger_buttons_summary" />
+                android:resource="@string/nubia_settings_summary" />
         </activity>
+
+        <!-- Trigger buttons (shown only inside Nubia settings root) -->
+        <activity
+            android:name=".trigger.TriggerActivity"
+            android:label="@string/trigger_buttons_title"
+            android:exported="false" />
+
+        <!-- Power cap (shown only inside Nubia settings root) -->
+        <activity
+            android:name=".power.PowerActivity"
+            android:label="@string/powercap_title"
+            android:exported="false" />
 
         <service
             android:name=".trigger.TriggerTileService"
@@ -81,5 +94,9 @@
             android:name=".trigger.TriggerRecorderService"
             android:exported="false"
             android:foregroundServiceType="microphone" />
+
+        <service
+            android:name=".power.PowerCapService"
+            android:exported="false" />
     </application>
 </manifest>

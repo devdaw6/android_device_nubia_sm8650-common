@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/powercap_title">
+
+    <SwitchPreferenceCompat
+        android:key="powercap_enable"
+        android:title="@string/powercap_enable_title"
+        android:summary="@string/powercap_enable_summary"
+        android:defaultValue="true" />
+
+    <SwitchPreferenceCompat
+        android:key="powercap_allow_full"
+        android:title="@string/powercap_allow_full_title"
+        android:summary="@string/powercap_allow_full_summary"
+        android:defaultValue="true" />
+
+    <SwitchPreferenceCompat
+        android:key="powercap_respect_system_modes"
+        android:title="@string/powercap_respect_system_modes_title"
+        android:summary="@string/powercap_respect_system_modes_summary"
+        android:defaultValue="true" />
+
+    <MultiSelectListPreference
+        android:key="powercap_whitelist"
+        android:title="@string/powercap_whitelist_title"
+        android:summary="@string/powercap_whitelist_summary" />
+
+    <Preference
+        android:key="powercap_usage_hint"
+        android:title="@string/powercap_usage_hint"
+        android:selectable="false" />
+
+</PreferenceScreen>

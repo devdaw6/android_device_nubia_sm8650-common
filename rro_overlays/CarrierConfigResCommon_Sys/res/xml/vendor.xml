@@ -41,7 +41,26 @@
         <boolean name="carrier_allow_transfer_ims_call_bool" value="true" />
         <long name="carrier_data_call_apn_retry_after_disconnect_long" value="100" />
         <string name="gps.nfw_proxy_apps">com.example.android.locationattribution</string>
-        <boolean name="carrier_cross_sim_ims_available_bool" value="true" />
+        <!-- Keep regular VoLTE/VoWiFi, but disable cross-SIM/opportunistic switching
+             paths that can trigger IMS data teardown loops. -->
+        <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
+        <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
+        <int name="opp_auto_data_switch_policy_int" value="0" />
+        <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
+        <boolean name="ping_test_before_data_switch_bool" value="false" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="21600000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="21600000" />
+        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="21600000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="21600000" />
+        <long name="opportunistic_network_backoff_time_long" value="21600000" />
+        <long name="opportunistic_network_max_backoff_time_long" value="43200000" />
+        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="21600000" />
+        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="43200000" />
+        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="21600000" />
+        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="21600000" />
+        <long name="opportunistic.5g_ping_pong_time_long" value="21600000" />
+        <long name="opportunistic.5g_backoff_time_long" value="21600000" />
+        <long name="opportunistic.5g_max_backoff_time_long" value="43200000" />
         <boolean name="carrier_b2c_enriched_calling_supported_bool" value="false" />
         <boolean name="carrier_call_progress_notification" value="true" />
         <string-array name="ratchet_rat_families" num="3">
@@ -49,7 +68,7 @@
             <item value="7,8,12" />
             <item value="3,11,9,10,15" />
         </string-array>
-        <string name="config_ims_package_override_string">com.google.android.ims</string>
+        <string name="config_ims_package_override_string">org.codeaurora.ims</string>
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="hide_enhanced_4g_lte_bool" value="false" />
         <boolean name="editable_wfc_mode_bool" value="true" />
@@ -3330,8 +3349,13 @@
     </carrier_config>
     <carrier_config mcc="250">
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
-        <boolean name="carrier_default_wfc_ims_enabled_bool" value="true" />
-        <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="false" />
+        <boolean name="editable_wfc_mode_bool" value="true" />
+        <boolean name="editable_wfc_roaming_mode_bool" value="true" />
+        <boolean name="carrier_wfc_supports_ims_preferred_bool" value="false" />
+        <int name="carrier_default_wfc_ims_mode_int" value="1" />
+        <int name="carrier_default_wfc_ims_roaming_mode_int" value="1" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3000" />
     </carrier_config>
     <carrier_config mcc="255" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />

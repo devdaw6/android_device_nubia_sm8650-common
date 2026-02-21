@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/nubia_settings_title">
+
+    <Preference
+        android:key="nubia_side_trigger"
+        android:title="@string/trigger_buttons_title"
+        android:summary="@string/trigger_buttons_summary">
+        <intent
+            android:targetPackage="org.lineageos.settings"
+            android:targetClass="org.lineageos.settings.trigger.TriggerActivity" />
+    </Preference>
+
+    <Preference
+        android:key="nubia_power_caps"
+        android:title="@string/powercap_title"
+        android:summary="@string/powercap_summary">
+        <intent
+            android:targetPackage="org.lineageos.settings"
+            android:targetClass="org.lineageos.settings.power.PowerActivity" />
+    </Preference>
+
+</PreferenceScreen>
