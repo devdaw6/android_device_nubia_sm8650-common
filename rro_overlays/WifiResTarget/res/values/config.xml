@@ -14,5 +14,5 @@
 
     <!-- Enable concurrent restricted connectivity + internet connectivity
          Note: this is conditional on the device supporting dual concurrent STAs. -->
-    <bool name="config_wifiMultiStaRestrictedConcurrencyEnabled" translatable="false">true</bool>
+    <bool name="config_wifiMultiStaRestrictedConcurrencyEnabled" translatable="false">false</bool>
 </resources>

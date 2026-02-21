@@ -26,3 +26,10 @@
 - Background memory cgroup `swappiness` lowered from `140` to `80`.
 - Added performance caps UI (NubiaParts): default capped CPU/GPU; per-app whitelist can restore full clocks.
 - UFS: clkscale stays disabled; hibern8 stays 5000; clkgate left enabled (no re-enable on boot_completed).
+- Medium-risk kernel tuning: removed `cpufreq.default_governor=performance` and `rcupdate.rcu_expedited=1` from kernel cmdline; lowered `sched_pelt_multiplier` from `4` to `2`.
+- Medium-risk post-boot tuning: reduced input/hispeed boosts, slowed CPU up-rate limits, lowered policy min frequencies, tightened `sched_fmax_cap`, and moved background cpuset to `0-3` (away from high-power cores `5-6`).
+- Additional aggressive step (~30% vs previous profile): further lowered WALT caps/boosts (`sched_fmax_cap`, `sched_max_freq_partial_halt`, `input_boost`, `hispeed_freq`, `rtg_boost_freq`) and further slowed `up_rate_limit_us`; `sched_pelt_multiplier` reduced to `1`.
+- Medium profile update: disabled early kernel `sched_boost` and removed cpuctl `sched_boost_no_override`/top-app colocate forcing to reduce unnecessary foreground over-boosting.
+- Core-ctl and scheduler softened again for daily use: fewer guaranteed big/prime cores online, higher task thresholds, milder `sched_ed_boost`, higher low-latency threshold.
+- Bus DCVS ceilings reduced (`UBWCP 640000`, `LLCC 710000`, `DDR 2400000`) for lower interconnect power under mixed load.
+- Debug/tracing-heavy modules removed from autoload lists (`coresight`, `stm_*`, `*_debug`, perfmon debug paths) to reduce background overhead.

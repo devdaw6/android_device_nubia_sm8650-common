@@ -12,8 +12,6 @@ crm.ko
 crypto-qti.ko
 dcc_v2.ko
 dcvs_fp.ko
-debug_symbol.ko
-debug-regulator.ko
 dispcc-pineapple.ko
 gcc-cliffs.ko
 gcc-pineapple.ko
@@ -30,7 +28,6 @@ gunyah_loader.ko
 gunyah_qcom.ko
 hwkm.ko
 icc-bcm-voter.ko
-icc-debug.ko
 icc-rpmh.ko
 icc-test.ko
 iommu-logger.ko
@@ -77,7 +74,6 @@ qnoc-pineapple.ko
 qnoc-qos.ko
 qrtr-gunyah.ko
 qrtr.ko
-qti-regmap-debugfs.ko
 rpmh-regulator.ko
 rtc-pm8xxx.ko
 sched-walt.ko
