@@ -29,6 +29,9 @@
     <!-- Boolean indicating that enable roaming between linked networks -->
     <bool name="config_wifiEnableLinkedNetworkRoaming" translatable="false">false</bool>
 
+    <!-- Extend DHCP lease renewals to reduce wakeups (12h). -->
+    <integer name="config_wifiDhcpRenewalTimeSec" translatable="false">43200</integer>
+
     <!-- Wifi driver supports Automatic channel selection (ACS) for softap -->
     <bool name="config_wifi_softap_acs_supported" translatable="false">true</bool>
 

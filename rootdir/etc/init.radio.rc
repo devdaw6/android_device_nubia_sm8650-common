@@ -1,0 +1,6 @@
+# Stock-like radio props for power (apply at boot if vendor build.prop missed them)
+on init
+    setprop persist.vendor.radio.signalDelay 5
+    setprop persist.vendor.radio.testTimerA 30
+    setprop persist.vendor.radio.testTimerB 30
+    setprop persist.vendor.radio.enableadvancedscan true

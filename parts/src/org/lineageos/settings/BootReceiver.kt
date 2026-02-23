@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
+import org.lineageos.settings.memory.RecentsKillService
 import org.lineageos.settings.trigger.TriggerController
 import org.lineageos.settings.power.PowerCapService
 
@@ -18,6 +19,7 @@ class BootReceiver : BroadcastReceiver() {
         if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
             TriggerController.restoreSettings(context)
             PowerCapService.startOrStop(context)
+            RecentsKillService.start(context)
         }
     }
 }

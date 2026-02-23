@@ -864,7 +864,9 @@ service wifi-crda /vendor/bin/init.crda.sh
    oneshot
 
 on property:sys.boot_completed=1
-    start qcom-post-boot
+    # Keep kernel-post-boot as the single authoritative profile source.
+    # qcom-post-boot is intentionally not auto-started to avoid tunable races.
+#    start qcom-post-boot
 #    start qti-testscripts
 
 on property:ro.vendor.ril.mbn_copy_completed=1
@@ -993,7 +995,7 @@ service esepmdaemon /system/vendor/bin/esepmdaemon
 
 on charger
     setprop persist.sys.usb.config mass_storage
-    start qcom-post-boot
+#    start qcom-post-boot
 
 #add poweroffhandler
 service poweroffhandler /system/vendor/bin/poweroffhandler

@@ -81,4 +81,23 @@
 
     <!-- Indicates whether the network-centric QoS policy feature is enabled. -->
     <bool name="config_wifiNetworkCentricQosPolicyFeatureEnabled" translatable="false">true</bool>
+
+    <!-- Power: relaxed scan cadence per README (connected/disconnected start 420s, tails 3600/5400s) -->
+    <integer-array translatable="false" name="config_wifiDisconnectedScanIntervalScheduleSec">
+        <item>420</item>
+        <item>1200</item>
+        <item>3600</item>
+        <item>5400</item>
+    </integer-array>
+    <integer-array translatable="false" name="config_wifiConnectedScanIntervalScheduleSec">
+        <item>420</item>
+        <item>1200</item>
+        <item>3600</item>
+        <item>5400</item>
+    </integer-array>
+    <!-- PNO: moving 3600s, stationary 420s per README -->
+    <integer name="config_wifiMovingPnoScanIntervalMillis" translatable="false">3600000</integer>
+    <integer name="config_wifiStationaryPnoScanIntervalMillis" translatable="false">420000</integer>
+    <!-- IMS-lost Wi-Fi disconnect delay per README -->
+    <integer name="config_wifiDelayDisconnectOnImsLostMs" translatable="false">5000</integer>
 </resources>

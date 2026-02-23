@@ -39,7 +39,7 @@
         <boolean name="carrier_supports_multianchor_conference" value="false" />
         <boolean name="carrier_call_composer_supported_bool" value="false" />
         <boolean name="carrier_allow_transfer_ims_call_bool" value="true" />
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
         <string name="gps.nfw_proxy_apps">com.example.android.locationattribution</string>
         <!-- Keep regular VoLTE/VoWiFi, but disable cross-SIM/opportunistic switching
              paths that can trigger IMS data teardown loops. -->
@@ -48,21 +48,21 @@
         <int name="opp_auto_data_switch_policy_int" value="0" />
         <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
         <boolean name="ping_test_before_data_switch_bool" value="false" />
-        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic_network_backoff_time_long" value="86400000" />
-        <long name="opportunistic_network_max_backoff_time_long" value="86400000" />
-        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="86400000" />
-        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic.5g_backoff_time_long" value="86400000" />
-        <long name="opportunistic.5g_max_backoff_time_long" value="86400000" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic_network_backoff_time_long" value="172800000" />
+        <long name="opportunistic_network_max_backoff_time_long" value="172800000" />
+        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="172800000" />
+        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic.5g_backoff_time_long" value="172800000" />
+        <long name="opportunistic.5g_max_backoff_time_long" value="172800000" />
         <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
-        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
+        <long name="data_switch_validation_min_interval_millis_long" value="172800000" />
         <boolean name="carrier_b2c_enriched_calling_supported_bool" value="false" />
         <boolean name="carrier_call_progress_notification" value="true" />
         <string-array name="ratchet_rat_families" num="3">
@@ -78,6 +78,30 @@
         <string name="gps.supl_port">7276</string>
         <string name="gps.supl_ver">0x20004</string>
         <string name="gps.lpp_profile">2</string>
+    </carrier_config>
+    <!-- Russia: MTS (25002) -->
+    <carrier_config mcc="250" mnc="02">
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
+        <boolean name="carrier_ps_data_off_ims_enabled_bool" value="false" />
+        <boolean name="carrier_allow_turnoff_ims_bool" value="true" />
+        <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
+        <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
+        <boolean name="ping_test_before_data_switch_bool" value="false" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
+    </carrier_config>
+    <!-- Russia: Beeline (25099) -->
+    <carrier_config mcc="250" mnc="99">
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
+        <boolean name="carrier_ps_data_off_ims_enabled_bool" value="false" />
+        <boolean name="carrier_allow_turnoff_ims_bool" value="true" />
+        <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
+        <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
+        <boolean name="ping_test_before_data_switch_bool" value="false" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
     </carrier_config>
     <carrier_config mcc="001" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -635,25 +659,25 @@
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="false" />
         <boolean name="editable_wfc_mode_bool" value="true" />
         <boolean name="editable_wfc_roaming_mode_bool" value="true" />
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
         <int name="opp_auto_data_switch_policy_int" value="0" />
         <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
         <boolean name="ping_test_before_data_switch_bool" value="false" />
         <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
-        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic_network_backoff_time_long" value="86400000" />
-        <long name="opportunistic_network_max_backoff_time_long" value="86400000" />
-        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="86400000" />
-        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic.5g_backoff_time_long" value="86400000" />
-        <long name="opportunistic.5g_max_backoff_time_long" value="86400000" />
+        <long name="data_switch_validation_min_interval_millis_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic_network_backoff_time_long" value="172800000" />
+        <long name="opportunistic_network_max_backoff_time_long" value="172800000" />
+        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="172800000" />
+        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic.5g_backoff_time_long" value="172800000" />
+        <long name="opportunistic.5g_max_backoff_time_long" value="172800000" />
     </carrier_config>
     <carrier_config mcc="250" mnc="99">
         <!-- Beeline RU: keep VoLTE available, but avoid unstable secondary IMS loops
@@ -666,29 +690,29 @@
         <boolean name="carrier_allow_turnoff_ims_bool" value="true" />
         <boolean name="hide_enhanced_4g_lte_bool" value="false" />
         <boolean name="enhanced_4g_lte_on_by_default_bool" value="false" />
-        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="false" />
-        <boolean name="editable_wfc_mode_bool" value="true" />
-        <boolean name="editable_wfc_roaming_mode_bool" value="true" />
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <boolean name="editable_wfc_mode_bool" value="false" />
+        <boolean name="editable_wfc_roaming_mode_bool" value="false" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
         <int name="opp_auto_data_switch_policy_int" value="0" />
         <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
         <boolean name="ping_test_before_data_switch_bool" value="false" />
         <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
-        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic_network_backoff_time_long" value="86400000" />
-        <long name="opportunistic_network_max_backoff_time_long" value="86400000" />
-        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="86400000" />
-        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic.5g_backoff_time_long" value="86400000" />
-        <long name="opportunistic.5g_max_backoff_time_long" value="86400000" />
+        <long name="data_switch_validation_min_interval_millis_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic_network_backoff_time_long" value="172800000" />
+        <long name="opportunistic_network_max_backoff_time_long" value="172800000" />
+        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="172800000" />
+        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic.5g_backoff_time_long" value="172800000" />
+        <long name="opportunistic.5g_max_backoff_time_long" value="172800000" />
     </carrier_config>
     <carrier_config mcc="254" mnc="001">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -3424,18 +3448,18 @@
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
         <int name="carrier_default_wfc_ims_roaming_mode_int" value="1" />
         <!-- Keep retry/backoff conservative on generic RU profile to avoid reconnect churn. -->
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
         <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
         <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
         <int name="opp_auto_data_switch_policy_int" value="0" />
         <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
         <boolean name="ping_test_before_data_switch_bool" value="false" />
         <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
-        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
+        <long name="data_switch_validation_min_interval_millis_long" value="172800000" />
     </carrier_config>
     <carrier_config mcc="250" mnc="02">
         <!-- Keep this after generic mcc=250 block to guarantee per-operator override. -->
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
         <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
         <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
         <boolean name="carrier_supports_ss_over_ut_bool" value="false" />
@@ -3445,47 +3469,51 @@
         <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
         <boolean name="ping_test_before_data_switch_bool" value="false" />
         <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
-        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic_network_backoff_time_long" value="86400000" />
-        <long name="opportunistic_network_max_backoff_time_long" value="86400000" />
-        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="86400000" />
-        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic.5g_backoff_time_long" value="86400000" />
-        <long name="opportunistic.5g_max_backoff_time_long" value="86400000" />
+        <long name="data_switch_validation_min_interval_millis_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic_network_backoff_time_long" value="172800000" />
+        <long name="opportunistic_network_max_backoff_time_long" value="172800000" />
+        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="172800000" />
+        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic.5g_backoff_time_long" value="172800000" />
+        <long name="opportunistic.5g_max_backoff_time_long" value="172800000" />
     </carrier_config>
     <carrier_config mcc="250" mnc="99">
         <!-- Keep this after generic mcc=250 block to guarantee per-operator override. -->
-        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="3600000" />
+        <long name="carrier_data_call_apn_retry_after_disconnect_long" value="7200000" />
         <boolean name="carrier_cross_sim_ims_available_bool" value="false" />
         <boolean name="enable_cross_sim_calling_on_opportunistic_data_bool" value="false" />
         <boolean name="carrier_supports_ss_over_ut_bool" value="false" />
         <boolean name="carrier_allow_turnoff_ims_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="false" />
+        <boolean name="editable_wfc_mode_bool" value="false" />
+        <boolean name="editable_wfc_roaming_mode_bool" value="false" />
         <boolean name="enhanced_4g_lte_on_by_default_bool" value="false" />
         <int name="opp_auto_data_switch_policy_int" value="0" />
         <boolean name="enabled_4g_opportunistic_network_scan_bool" value="false" />
         <boolean name="ping_test_before_data_switch_bool" value="false" />
         <boolean name="switch_data_to_primary_if_primary_is_oos_bool" value="false" />
-        <long name="data_switch_validation_min_interval_millis_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic_network_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic_network_backoff_time_long" value="86400000" />
-        <long name="opportunistic_network_max_backoff_time_long" value="86400000" />
-        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="86400000" />
-        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="86400000" />
-        <long name="opportunistic.5g_ping_pong_time_long" value="86400000" />
-        <long name="opportunistic.5g_backoff_time_long" value="86400000" />
-        <long name="opportunistic.5g_max_backoff_time_long" value="86400000" />
+        <long name="data_switch_validation_min_interval_millis_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_entry_or_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic_network_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic_network_backoff_time_long" value="172800000" />
+        <long name="opportunistic_network_max_backoff_time_long" value="172800000" />
+        <long name="time_to_switch_back_to_primary_if_opportunistic_oos_long" value="172800000" />
+        <long name="opportunistic_time_to_scan_after_capability_switch_to_primary_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_data_switch_exit_hysteresis_time_long" value="172800000" />
+        <long name="opportunistic.5g_ping_pong_time_long" value="172800000" />
+        <long name="opportunistic.5g_backoff_time_long" value="172800000" />
+        <long name="opportunistic.5g_max_backoff_time_long" value="172800000" />
     </carrier_config>
     <carrier_config mcc="255" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
