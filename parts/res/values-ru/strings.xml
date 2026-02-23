@@ -12,7 +12,7 @@
     <string name="trigger_buttons_title">Боковой триггер</string>
     <string name="trigger_buttons_summary">Настройка бокового триггера</string>
     <string name="trigger_buttons_enable_title">Включить боковой триггер</string>
-    <string name="trigger_buttons_enable_summary">Разрешить работу бокового триггера</string>
+    <string name="trigger_buttons_enable_summary">Активировать боковую кнопку триггера</string>
     <string name="trigger_green_category">Триггер</string>
     <string name="trigger_green_action_title">Действие триггера</string>
     <string name="trigger_action_camera">Камера</string>
@@ -31,15 +31,15 @@
 
     <!-- Power cap -->
     <string name="powercap_title">Ограничение частот</string>
-    <string name="powercap_summary">По умолчанию режет CPU/GPU, выбранным приложениям даёт максимум</string>
+    <string name="powercap_summary">Снижает частоты CPU/GPU по умолчанию; выбранные приложения работают на полной мощности</string>
     <string name="powercap_enable_title">Включить ограничение</string>
     <string name="powercap_enable_summary">Занижает максимальные частоты CPU/GPU ради автономности</string>
     <string name="powercap_whitelist_title">Приложения с полным быстродействием</string>
-    <string name="powercap_whitelist_summary">Выбранные приложения получают стоковые частоты на переднем плане</string>
-    <string name="powercap_allow_full_title">Разрешить максимум для списка</string>
-    <string name="powercap_allow_full_summary">Если активное приложение в списке, возвращать стоковые частоты</string>
+    <string name="powercap_whitelist_summary">Выбранные приложения работают на полной мощности, пока открыты</string>
+    <string name="powercap_allow_full_title">Полная мощность для приложений из списка</string>
+    <string name="powercap_allow_full_summary">Когда открытое приложение есть в списке — снимать ограничение частот</string>
     <string name="powercap_respect_system_modes_title">Учитывать системные режимы</string>
-    <string name="powercap_respect_system_modes_summary">Отключать ограничение в известных режимах производительности/игры; в энергосбережении оставлять ограничение</string>
-    <string name="powercap_usage_hint">Если попросит доступ к активности, выдайте, чтобы видеть активное приложение</string>
+    <string name="powercap_respect_system_modes_summary">Снимать ограничение в режимах производительности и игры; в режиме экономии батареи оставлять</string>
+    <string name="powercap_usage_hint">Если появится запрос доступа к статистике — разрешите. Это нужно, чтобы определять активное приложение</string>
 
 </resources>
