@@ -10,7 +10,5 @@
         <item name="android:colorAccent">@*android:color/accent_device_default</item>
         <item name="colorControlActivated">@*android:color/accent_device_default</item>
         <item name="android:colorControlActivated">@*android:color/accent_device_default</item>
-        <item name="colorControlHighlight">@androidprv:color/materialColorControlHighlight</item>
-        <item name="android:colorControlHighlight">@androidprv:color/materialColorControlHighlight</item>
     </style>
 </resources>
