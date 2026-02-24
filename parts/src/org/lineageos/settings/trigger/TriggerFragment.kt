@@ -24,12 +24,14 @@ import com.android.settingslib.widget.SettingsBasePreferenceFragment
 
 import org.lineageos.settings.R
 import org.lineageos.settings.utils.*
+import org.lineageos.settings.automation.AutomationActivity
+import org.lineageos.settings.automation.Automation
+import org.lineageos.settings.automation.AutomationStore
 
 class TriggerFragment : SettingsBasePreferenceFragment(),
     Preference.OnPreferenceChangeListener,
     Preference.OnPreferenceClickListener {
 
-    private lateinit var mSwitchBar: SwitchPreferenceCompat
     private lateinit var mActionPref: ListPreference
     private lateinit var mAppPref: Preference
     private lateinit var mRecorderPref: SwitchPreferenceCompat
@@ -37,13 +39,6 @@ class TriggerFragment : SettingsBasePreferenceFragment(),
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.trigger_preferences)
-
-        val triggerEnabled = getInt(requireContext(), TriggerController.KEY_TRIGGER_ENABLE, 0) == 1
-
-        mSwitchBar = findPreference<SwitchPreferenceCompat>(TriggerController.KEY_TRIGGER_ENABLE)!!.apply {
-            setChecked(triggerEnabled)
-            onPreferenceChangeListener = this@TriggerFragment
-        }
 
         mActionPref = findPreference<ListPreference>(TriggerController.KEY_TRIGGER_ACTION_GREEN)!!.apply {
             value = TriggerController.getAction(requireContext()).toString()
@@ -65,17 +60,11 @@ class TriggerFragment : SettingsBasePreferenceFragment(),
         updateActionSummary()
         updateModePreferences()
 
-        TriggerController.setTriggerEnabled(requireContext(), triggerEnabled)
+        TriggerController.setTriggerEnabled(requireContext(), true)
     }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
         return when (preference.key) {
-            TriggerController.KEY_TRIGGER_ENABLE -> {
-                val isEnabled = newValue as Boolean
-                TriggerController.setTriggerEnabled(requireContext(), isEnabled)
-                true
-            }
-
             TriggerController.KEY_TRIGGER_ACTION_GREEN -> {
                 val action = (newValue as String).toInt()
                 TriggerController.setAction(requireContext(), action)
@@ -111,7 +100,11 @@ class TriggerFragment : SettingsBasePreferenceFragment(),
     override fun onPreferenceClick(preference: Preference): Boolean {
         return when (preference.key) {
             TriggerController.KEY_TRIGGER_APP -> {
-                showAppPicker()
+                if (TriggerController.getAction(requireContext()) == TriggerController.ACTION_AUTOMATION) {
+                    startActivity(Intent(requireContext(), AutomationActivity::class.java))
+                } else {
+                    showAppPicker()
+                }
                 true
             }
             else -> false
@@ -120,8 +113,7 @@ class TriggerFragment : SettingsBasePreferenceFragment(),
 
     override fun onResume() {
         super.onResume()
-        val triggerEnabled = getInt(requireContext(), TriggerController.KEY_TRIGGER_ENABLE, 0) == 1
-        TriggerController.setTriggerEnabled(requireContext(), triggerEnabled)
+        TriggerController.setTriggerEnabled(requireContext(), true)
         updateModePreferences()
     }
 
@@ -138,29 +130,49 @@ class TriggerFragment : SettingsBasePreferenceFragment(),
         mRecorderPref.isChecked = recorder
         mFlashlightPref.isChecked = flashlight
 
-        mRecorderPref.isEnabled = !flashlight
-        mFlashlightPref.isEnabled = !recorder
+        val disableExtras = TriggerController.getAction(requireContext()) == TriggerController.ACTION_AUTOMATION
+        mRecorderPref.isEnabled = !flashlight && !disableExtras
+        mFlashlightPref.isEnabled = !recorder && !disableExtras
 
         val modeActive = recorder || flashlight
         val action = TriggerController.getAction(requireContext())
         mActionPref.isEnabled = !modeActive
 
-        val appEnabled = !modeActive && action == TriggerController.ACTION_APP
-        mAppPref.isEnabled = appEnabled
-        if (!appEnabled) {
-            mAppPref.summary = getString(R.string.trigger_app_not_set)
-            mAppPref.icon = null
-            return
-        }
+        val appEnabled = !modeActive && (action == TriggerController.ACTION_APP)
+        val automationEnabled = !modeActive && (action == TriggerController.ACTION_AUTOMATION)
 
-        val component = TriggerController.getApp(requireContext())
-        val info = getAppInfo(component)
-        if (info == null) {
-            mAppPref.summary = getString(R.string.trigger_app_not_set)
+        mAppPref.isVisible = action == TriggerController.ACTION_APP
+        if (action == TriggerController.ACTION_APP) {
+            mAppPref.title = getString(R.string.trigger_choose_app_title)
+            mAppPref.isEnabled = appEnabled
+            if (!appEnabled) {
+                mAppPref.summary = getString(R.string.trigger_app_not_set)
+                mAppPref.icon = null
+                return
+            }
+
+            val component = TriggerController.getApp(requireContext())
+            val info = getAppInfo(component)
+            if (info == null) {
+                mAppPref.summary = getString(R.string.trigger_app_not_set)
+                mAppPref.icon = null
+            } else {
+                mAppPref.summary = info.loadLabel(requireContext().packageManager)
+                mAppPref.icon = info.loadIcon(requireContext().packageManager)
+            }
+        } else if (action == TriggerController.ACTION_AUTOMATION) {
+            val bound = AutomationStore.getForBinding(requireContext(), Automation.BINDING_GREEN)
+            mAppPref.isVisible = true
+            mAppPref.isEnabled = automationEnabled
+            mAppPref.title = getString(R.string.automation_title)
+            if (bound != null) {
+                mAppPref.summary = bound.name
+            } else {
+                mAppPref.summary = getString(R.string.automation_empty)
+            }
             mAppPref.icon = null
         } else {
-            mAppPref.summary = info.loadLabel(requireContext().packageManager)
-            mAppPref.icon = info.loadIcon(requireContext().packageManager)
+            mAppPref.isVisible = false
         }
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/china_killer_title">
+
+    <SwitchPreferenceCompat
+        android:key="china_killer_enable"
+        android:title="@string/china_killer_toggle_title"
+        android:summary="@string/china_killer_toggle_summary" />
+
+    <MultiSelectListPreference
+        android:key="china_killer_whitelist"
+        android:title="@string/china_killer_whitelist_title"
+        android:summary="@string/china_killer_whitelist_summary" />
+
+</PreferenceScreen>

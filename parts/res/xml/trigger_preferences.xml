@@ -6,11 +6,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/trigger_buttons_title">
 
-    <SwitchPreferenceCompat
-        android:key="trigger_enable"
-        android:title="@string/trigger_buttons_enable_title"
-        android:summary="@string/trigger_buttons_enable_summary" />
-
     <PreferenceCategory
         android:title="@string/trigger_green_category">
 

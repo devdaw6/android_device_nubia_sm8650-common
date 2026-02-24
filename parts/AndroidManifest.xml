@@ -14,6 +14,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
@@ -80,6 +85,12 @@
             android:label="@string/powercap_title"
             android:exported="false" />
 
+        <!-- Automations -->
+        <activity
+            android:name=".automation.AutomationActivity"
+            android:label="@string/automation_title"
+            android:exported="false" />
+
         <service
             android:name=".trigger.TriggerTileService"
             android:exported="true"
@@ -102,6 +113,19 @@
 
         <service
             android:name=".memory.RecentsKillService"
+            android:exported="false" />
+
+        <service
+            android:name=".automation.AutomationEventService"
+            android:exported="false" />
+
+        <activity
+            android:name=".memory.ChinaKillerActivity"
+            android:label="@string/china_killer_title"
+            android:exported="false" />
+
+        <receiver
+            android:name=".automation.AutomationSchedulerReceiver"
             android:exported="false" />
     </application>
 </manifest>

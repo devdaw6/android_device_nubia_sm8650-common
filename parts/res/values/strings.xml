@@ -42,4 +42,78 @@
     <string name="powercap_respect_system_modes_summary">Lift caps in performance/game modes; keep caps in Battery Saver</string>
     <string name="powercap_usage_hint">If prompted, grant Usage Access so the app can detect which app is currently open</string>
 
+    <!-- Automation -->
+    <string name="automation_title">Automations</string>
+    <string name="automation_summary">Create shortcuts and optionally bind them to the side trigger</string>
+    <string name="automation_list_title">Saved automations</string>
+    <string name="automation_add_title">Add automation</string>
+    <string name="automation_add_summary">Create a shortcut that can also run from the trigger</string>
+    <string name="automation_edit_title">Edit automation</string>
+    <string name="automation_empty">No automations yet</string>
+    <string name="automation_name_hint">Name</string>
+    <string name="automation_bind_trigger">Bind to side trigger</string>
+    <string name="automation_trigger_green">Up</string>
+    <string name="automation_trigger_red">Down</string>
+    <string name="automation_trigger_hint">Only one automation can be bound to each trigger direction.</string>
+    <string name="automation_trigger_none">No trigger</string>
+    <string name="automation_delete">Delete</string>
+    <string name="automation_error_name">Enter a name</string>
+
+    <string name="automation_action_url">Open URL / pin shortcut</string>
+    <string name="automation_action_copy">Copy text to clipboard</string>
+    <string name="automation_action_dnd">Toggle Do Not Disturb</string>
+    <string name="automation_action_autobrightness">Toggle auto-brightness</string>
+    <string name="automation_action_wifi">Toggle Wi‑Fi</string>
+    <string name="automation_action_media">Play/Pause media</string>
+    <string name="automation_action_message">Send prefilled message</string>
+    <string name="automation_action_broadcast">Send local broadcast</string>
+    <string name="automation_action_force_stop">Force stop app</string>
+    <string name="automation_action_unknown">Action</string>
+    <string name="automation_field_url">Link</string>
+    <string name="automation_field_text">Text</string>
+    <string name="automation_pin_shortcut">Pin shortcut on home</string>
+    <string name="automation_shortcut_label">Shortcut label</string>
+    <string name="automation_shortcut_icon">Shortcut icon</string>
+    <string name="automation_icon_globe">Globe</string>
+    <string name="automation_icon_star">Star</string>
+    <string name="automation_icon_bolt">Bolt</string>
+    <string name="automation_pick_icon">Pick image</string>
+    <string name="automation_icon_clear">Clear</string>
+    <string name="automation_icon_none">No custom icon</string>
+    <string name="automation_wifi_on">Wi‑Fi on</string>
+    <string name="automation_wifi_off">Wi‑Fi off</string>
+    <string name="automation_dnd_on">DND on</string>
+    <string name="automation_dnd_off">DND off</string>
+    <string name="automation_field_phone">Phone / target</string>
+    <string name="automation_field_package">Package (optional)</string>
+    <string name="automation_field_message">Message text</string>
+    <string name="automation_field_broadcast_action">Broadcast action</string>
+    <string name="automation_field_extra_key">Extra key</string>
+    <string name="automation_field_extra_value">Extra value</string>
+    <string name="automation_message_is_sms">Use SMS composer (smsto:)</string>
+    <string name="automation_schedule_enable">Run on schedule</string>
+    <string name="automation_schedule_time">Time</string>
+    <string name="automation_schedule_repeat">Repeat daily</string>
+    <string name="automation_schedule_not_set">Not set</string>
+    <string name="automation_trigger_app_open">When app opens</string>
+    <string name="automation_trigger_app_close">When app closes</string>
+    <string name="automation_trigger_call_end">After call ends</string>
+    <string name="automation_trigger_app">Trigger app</string>
+    <string name="automation_trigger_app_not_set">No trigger app selected</string>
+
+    <!-- China killer -->
+    <string name="china_killer_title">Chinese stock</string>
+    <string name="china_killer_toggle_title">Force-stop when swiped away</string>
+    <string name="china_killer_toggle_summary">Kill apps when removed from recents, like CN stock behavior</string>
+    <string name="china_killer_whitelist_title">Exclusions</string>
+    <string name="china_killer_whitelist_summary">Apps that will not be force-stopped</string>
+    <string name="china_killer_whitelist_disabled">Exclusions inactive while toggle is off</string>
+    <string name="automation_presets_title">Quick presets</string>
+    <string name="automation_presets_summary">Add morning/evening/reminder automations with one tap</string>
+    <string name="automation_presets_hint">Choose what to add; you can edit them later in the list.</string>
+    <string name="automation_preset_morning">Morning routine (Wi‑Fi on, auto-brightness, open URL)</string>
+    <string name="automation_preset_evening">Evening routine (DND on, dim screen)</string>
+    <string name="automation_preset_reminder">Daily reminder (prefilled message)</string>
+    <string name="automation_clip_copied">Copied</string>
+
 </resources>

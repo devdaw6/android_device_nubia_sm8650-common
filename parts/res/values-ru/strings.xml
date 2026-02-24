@@ -42,4 +42,78 @@
     <string name="powercap_respect_system_modes_summary">Снимать ограничение в режимах производительности и игры; в режиме экономии батареи оставлять</string>
     <string name="powercap_usage_hint">Если появится запрос доступа к статистике — разрешите. Это нужно, чтобы определять активное приложение</string>
 
+    <!-- Automation -->
+    <string name="automation_title">Автоматизации</string>
+    <string name="automation_summary">Создавайте шорткаты и при желании вешайте их на боковой триггер</string>
+    <string name="automation_list_title">Сохранённые автоматизации</string>
+    <string name="automation_add_title">Добавить автоматизацию</string>
+    <string name="automation_add_summary">Шорткат, который можно запустить и с триггера</string>
+    <string name="automation_edit_title">Редактирование</string>
+    <string name="automation_empty">Пока пусто</string>
+    <string name="automation_name_hint">Название</string>
+    <string name="automation_bind_trigger">Назначить на боковой триггер</string>
+    <string name="automation_trigger_green">Вверх</string>
+    <string name="automation_trigger_red">Вниз</string>
+    <string name="automation_trigger_hint">На каждое направление можно повесить только одну автоматизацию.</string>
+    <string name="automation_trigger_none">Без триггера</string>
+    <string name="automation_delete">Удалить</string>
+    <string name="automation_error_name">Введите название</string>
+
+    <string name="automation_action_url">Открыть ссылку / добавить ярлык</string>
+    <string name="automation_action_copy">Скопировать текст</string>
+    <string name="automation_action_dnd">Переключить «Не беспокоить»</string>
+    <string name="automation_action_autobrightness">Переключить автояркость</string>
+    <string name="automation_action_wifi">Переключить Wi‑Fi</string>
+    <string name="automation_action_media">Воспроизведение/пауза медиа</string>
+    <string name="automation_action_message">Отправить заготовленное сообщение</string>
+    <string name="automation_action_broadcast">Отправить локальный broadcast</string>
+    <string name="automation_action_force_stop">Принудительно остановить приложение</string>
+    <string name="automation_action_unknown">Действие</string>
+    <string name="automation_field_url">Ссылка</string>
+    <string name="automation_field_text">Текст</string>
+    <string name="automation_pin_shortcut">Закрепить ярлык на главном экране</string>
+    <string name="automation_shortcut_label">Название ярлыка</string>
+    <string name="automation_shortcut_icon">Иконка ярлыка</string>
+    <string name="automation_icon_globe">Глобус</string>
+    <string name="automation_icon_star">Звезда</string>
+    <string name="automation_icon_bolt">Молния</string>
+    <string name="automation_pick_icon">Выбрать изображение</string>
+    <string name="automation_icon_clear">Сбросить</string>
+    <string name="automation_icon_none">Без кастомной иконки</string>
+    <string name="automation_wifi_on">Wi‑Fi включён</string>
+    <string name="automation_wifi_off">Wi‑Fi выключен</string>
+    <string name="automation_dnd_on">Не беспокоить включён</string>
+    <string name="automation_dnd_off">Не беспокоить выключен</string>
+    <string name="automation_field_phone">Телефон / адресат</string>
+    <string name="automation_field_package">Пакет (опционально)</string>
+    <string name="automation_field_message">Текст сообщения</string>
+    <string name="automation_field_broadcast_action">Broadcast action</string>
+    <string name="automation_field_extra_key">Имя extra</string>
+    <string name="automation_field_extra_value">Значение extra</string>
+    <string name="automation_message_is_sms">Использовать SMS composer (smsto:)</string>
+    <string name="automation_schedule_enable">Запуск по расписанию</string>
+    <string name="automation_schedule_time">Время</string>
+    <string name="automation_schedule_repeat">Повторять ежедневно</string>
+    <string name="automation_schedule_not_set">Не задано</string>
+    <string name="automation_trigger_app_open">При открытии приложения</string>
+    <string name="automation_trigger_app_close">При закрытии приложения</string>
+    <string name="automation_trigger_call_end">После завершения звонка</string>
+    <string name="automation_trigger_app">Приложение для триггера</string>
+    <string name="automation_trigger_app_not_set">Приложение не выбрано</string>
+
+    <!-- China killer -->
+    <string name="china_killer_title">Китайский сток</string>
+    <string name="china_killer_toggle_title">Форс-стоп при свайпе из недавних</string>
+    <string name="china_killer_toggle_summary">Убивать приложение при удалении из списка недавних, как в китайской прошивке</string>
+    <string name="china_killer_whitelist_title">Исключения</string>
+    <string name="china_killer_whitelist_summary">Приложения, которых не касается форс-стоп</string>
+    <string name="china_killer_whitelist_disabled">Исключения неактивны, пока тумблер выключен</string>
+    <string name="automation_presets_title">Быстрые шаблоны</string>
+    <string name="automation_presets_summary">Добавить утро/вечер/напоминание одним нажатием</string>
+    <string name="automation_presets_hint">Выберите нужные шаблоны, позже их можно отредактировать в списке.</string>
+    <string name="automation_preset_morning">Утро (Wi‑Fi вкл, автояркость, открыть ссылку)</string>
+    <string name="automation_preset_evening">Вечер (DND вкл, снизить яркость)</string>
+    <string name="automation_preset_reminder">Напоминание (готовое сообщение)</string>
+    <string name="automation_clip_copied">Скопировано</string>
+
 </resources>

@@ -22,6 +22,8 @@ import android.view.KeyEvent;
 
 import com.android.internal.os.DeviceKeyHandler;
 
+import org.lineageos.settings.automation.Automation;
+import org.lineageos.settings.automation.AutomationExecutor;
 public final class TriggerKeyHandlerImpl implements DeviceKeyHandler {
     private static final String TAG = "TriggerKeyHandlerImpl";
 
@@ -35,6 +37,7 @@ public final class TriggerKeyHandlerImpl implements DeviceKeyHandler {
     private static final int ACTION_CAMERA = 0;
     private static final int ACTION_VIBRATION = 1;
     private static final int ACTION_APP = 2;
+    private static final int ACTION_AUTOMATION = 3;
 
     private static final int SCANCODE_RED = 0x18e;
     private static final int SCANCODE_GREEN = 0x18f;
@@ -161,17 +164,26 @@ public final class TriggerKeyHandlerImpl implements DeviceKeyHandler {
             case ACTION_APP:
                 launchApp();
                 break;
+            case ACTION_AUTOMATION:
+                AutomationExecutor.INSTANCE.executeForBinding(mContext, Automation.BINDING_GREEN);
+                break;
             default:
                 break;
         }
     }
 
     private void handleRed() {
-        if (getAction() == ACTION_VIBRATION) {
-            setVibration(false);
-            return;
+        switch (getAction()) {
+            case ACTION_VIBRATION:
+                setVibration(false);
+                break;
+            case ACTION_AUTOMATION:
+                AutomationExecutor.INSTANCE.executeForBinding(mContext, Automation.BINDING_RED);
+                break;
+            default:
+                goHome();
+                break;
         }
-        goHome();
     }
 
     private void setVibration(boolean enabled) {

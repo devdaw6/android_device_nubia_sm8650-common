@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/automation_title">
+
+    <PreferenceCategory
+        android:key="automation_list"
+        android:title="@string/automation_list_title" />
+
+    <Preference
+        android:key="automation_add"
+        android:title="@string/automation_add_title"
+        android:summary="@string/automation_add_summary"
+        android:icon="@android:drawable/ic_input_add" />
+
+    <Preference
+        android:key="automation_presets"
+        android:title="@string/automation_presets_title"
+        android:summary="@string/automation_presets_summary" />
+
+</PreferenceScreen>

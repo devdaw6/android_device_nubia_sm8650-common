@@ -12,6 +12,9 @@ import android.content.Intent
 import org.lineageos.settings.memory.RecentsKillService
 import org.lineageos.settings.trigger.TriggerController
 import org.lineageos.settings.power.PowerCapService
+import org.lineageos.settings.automation.AutomationScheduler
+import org.lineageos.settings.automation.AutomationEventService
+import org.lineageos.settings.utils.getInt
 
 class BootReceiver : BroadcastReceiver() {
 
@@ -19,7 +22,11 @@ class BootReceiver : BroadcastReceiver() {
         if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
             TriggerController.restoreSettings(context)
             PowerCapService.startOrStop(context)
-            RecentsKillService.start(context)
+            if (getInt(context, "china_killer_enable", 0) == 1) {
+                RecentsKillService.start(context)
+            }
+            AutomationScheduler.reschedule(context)
+            AutomationEventService.startOrStop(context)
         }
     }
 }

@@ -19,6 +19,9 @@ object TriggerController {
     const val ACTION_CAMERA = 0
     const val ACTION_VIBRATION = 1
     const val ACTION_APP = 2
+    const val ACTION_AUTOMATION = 3
+    const val ACTION_SEND_MESSAGE = 10
+    const val ACTION_BROADCAST = 11
 
     const val TRIGGER_BUTTON1_ENABLE_NODE = "/proc/nubia_key/sar0/mode_operation"
     const val TRIGGER_BUTTON2_ENABLE_NODE = "/proc/nubia_key/sar1/mode_operation"
@@ -49,8 +52,7 @@ object TriggerController {
      * @return puts the value in place
      */
     fun restoreSettings(context: Context) {
-        val triggerEnabled = getInt(context, KEY_TRIGGER_ENABLE, 0) == 1
-
+        val triggerEnabled = getInt(context, KEY_TRIGGER_ENABLE, 1) == 1
         applySettings(context, triggerEnabled)
     }
 

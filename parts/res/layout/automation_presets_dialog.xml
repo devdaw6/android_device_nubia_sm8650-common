@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/automation_presets_hint" />
+
+        <CheckBox
+            android:id="@+id/preset_morning_enable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/automation_preset_morning" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/preset_morning_time_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automation_schedule_time" />
+
+            <TextView
+                android:id="@+id/preset_morning_time_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/automation_schedule_not_set" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/preset_morning_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/automation_field_url"
+            android:inputType="textUri" />
+
+        <CheckBox
+            android:id="@+id/preset_evening_enable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/automation_preset_evening" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/preset_evening_time_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automation_schedule_time" />
+
+            <TextView
+                android:id="@+id/preset_evening_time_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/automation_schedule_not_set" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/preset_reminder_enable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/automation_preset_reminder" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/preset_reminder_time_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automation_schedule_time" />
+
+            <TextView
+                android:id="@+id/preset_reminder_time_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/automation_schedule_not_set" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/preset_reminder_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/automation_field_message"
+            android:minLines="2"
+            android:inputType="textCapSentences|textMultiLine" />
+
+        <EditText
+            android:id="@+id/preset_reminder_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/automation_field_phone"
+            android:inputType="textVisiblePassword" />
+
+    </LinearLayout>
+</ScrollView>

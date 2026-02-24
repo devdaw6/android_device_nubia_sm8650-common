@@ -8,12 +8,51 @@
         <item>@string/trigger_action_camera</item>
         <item>@string/trigger_action_vibration</item>
         <item>@string/trigger_action_app</item>
+        <item>@string/automation_title</item>
     </string-array>
 
     <string-array name="trigger_action_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
+    <string-array name="automation_action_entries">
+        <item>@string/automation_action_url</item>
+        <item>@string/automation_action_copy</item>
+        <item>@string/automation_action_dnd</item>
+        <item>@string/automation_action_autobrightness</item>
+        <item>@string/automation_action_wifi</item>
+        <item>@string/automation_action_media</item>
+        <item>@string/automation_action_message</item>
+        <item>@string/automation_action_broadcast</item>
+        <item>@string/automation_action_force_stop</item>
+    </string-array>
+
+    <string-array name="automation_icon_entries">
+        <item>@string/automation_icon_globe</item>
+        <item>@string/automation_icon_star</item>
+        <item>@string/automation_icon_bolt</item>
+    </string-array>
+
+    <string-array name="automation_icon_values" translatable="false">
+        <item>globe</item>
+        <item>star</item>
+        <item>bolt</item>
+    </string-array>
+
+    <string-array name="automation_trigger_entries">
+        <item>@string/automation_trigger_none</item>
+        <item>@string/automation_trigger_app_open</item>
+        <item>@string/automation_trigger_app_close</item>
+        <item>@string/automation_trigger_call_end</item>
+    </string-array>
+
+    <string-array name="automation_trigger_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

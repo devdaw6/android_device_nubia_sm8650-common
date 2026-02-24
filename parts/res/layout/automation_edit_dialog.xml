@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/automation_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/automation_name_hint"
+            android:inputType="textCapSentences" />
+
+        <Spinner
+            android:id="@+id/automation_action_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/automation_trigger_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:id="@+id/automation_trigger_app_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/automation_trigger_app_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automation_trigger_app" />
+
+            <TextView
+                android:id="@+id/automation_trigger_app_summary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:text="@string/automation_trigger_app_not_set" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/automation_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/automation_field_url"
+            android:inputType="textUri"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/automation_pin_shortcut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/automation_pin_shortcut"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/automation_shortcut_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/automation_shortcut_label"
+            android:inputType="textCapSentences"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/automation_shortcut_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/automation_custom_icon_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/automation_pick_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automation_pick_icon" />
+
+            <TextView
+                android:id="@+id/automation_icon_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/automation_icon_none" />
+
+            <ImageButton
+                android:id="@+id/automation_icon_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:contentDescription="@string/automation_icon_clear"
+                android:background="?android:attr/selectableItemBackgroundBorderless" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/automation_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/automation_field_text"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minLines="2"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/automation_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/automation_field_phone"
+            android:inputType="textVisiblePassword"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/automation_package"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/automation_field_package"
+            android:inputType="textVisiblePassword"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/automation_is_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/automation_message_is_sms"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/automation_broadcast_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/automation_field_broadcast_action"
+            android:inputType="textVisiblePassword"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/automation_broadcast_extra_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/automation_field_extra_key"
+            android:inputType="textVisiblePassword"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/automation_broadcast_extra_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/automation_field_extra_value"
+            android:inputType="textVisiblePassword"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/automation_schedule_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <CheckBox
+                android:id="@+id/automation_schedule_enable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/automation_schedule_enable" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/automation_schedule_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/automation_schedule_time" />
+
+                <TextView
+                    android:id="@+id/automation_schedule_time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/automation_schedule_not_set" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/automation_schedule_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/automation_schedule_repeat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/app_picker_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/automation_choose_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trigger_choose_app_title" />
+
+            <TextView
+                android:id="@+id/automation_app_summary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:text="@string/trigger_app_not_set" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/automation_bind_trigger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/automation_bind_trigger" />
+
+        <RadioGroup
+            android:id="@+id/automation_trigger_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/automation_trigger_green"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/automation_trigger_green" />
+
+            <RadioButton
+                android:id="@+id/automation_trigger_red"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/automation_trigger_red" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/automation_trigger_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/automation_trigger_hint" />
+    </LinearLayout>
+</ScrollView>

@@ -24,4 +24,22 @@
             android:targetClass="org.lineageos.settings.power.PowerActivity" />
     </Preference>
 
+    <Preference
+        android:key="nubia_automation"
+        android:title="@string/automation_title"
+        android:summary="@string/automation_summary">
+        <intent
+            android:targetPackage="org.lineageos.settings"
+            android:targetClass="org.lineageos.settings.automation.AutomationActivity" />
+    </Preference>
+
+    <Preference
+        android:key="nubia_china_killer"
+        android:title="@string/china_killer_title"
+        android:summary="@string/china_killer_toggle_summary">
+        <intent
+            android:targetPackage="org.lineageos.settings"
+            android:targetClass="org.lineageos.settings.memory.ChinaKillerActivity" />
+    </Preference>
+
 </PreferenceScreen>
