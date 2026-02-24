@@ -177,9 +177,6 @@ public final class TriggerKeyHandlerImpl implements DeviceKeyHandler {
             case ACTION_VIBRATION:
                 setVibration(false);
                 break;
-            case ACTION_AUTOMATION:
-                AutomationExecutor.INSTANCE.executeForBinding(mContext, Automation.BINDING_RED);
-                break;
             default:
                 goHome();
                 break;

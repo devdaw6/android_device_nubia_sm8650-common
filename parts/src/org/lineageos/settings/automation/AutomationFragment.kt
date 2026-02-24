@@ -35,11 +35,12 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
         if (result.resultCode == android.app.Activity.RESULT_OK) {
             val uri = result.data?.data ?: return@registerForActivityResult
             try {
+                val takeFlags = (result.data?.flags ?: 0) and Intent.FLAG_GRANT_READ_URI_PERMISSION
                 requireContext().contentResolver.takePersistableUriPermission(
                     uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    if (takeFlags != 0) takeFlags else Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
-            } catch (_: SecurityException) {}
+            } catch (_: Exception) {}
             iconPickerCallback?.invoke(uri.toString())
         }
     }
@@ -242,8 +243,7 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
             else -> ""
         }.takeIf { it.isNotBlank() }?.let { " • $it" } ?: ""
         val triggerLabel = when (automation.triggerBinding) {
-            Automation.BINDING_GREEN -> getString(R.string.automation_trigger_green)
-            Automation.BINDING_RED -> getString(R.string.automation_trigger_red)
+            Automation.BINDING_GREEN -> getString(R.string.automation_bind_trigger)
             else -> getString(R.string.automation_trigger_none)
         }
         return "$actionLabel$detail • $triggerLabel"
@@ -261,7 +261,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
         val textInput = view.findViewById<EditText>(R.id.automation_text)
         val pinShortcut = view.findViewById<CheckBox>(R.id.automation_pin_shortcut)
         val shortcutLabel = view.findViewById<EditText>(R.id.automation_shortcut_label)
-        val shortcutIcon = view.findViewById<Spinner>(R.id.automation_shortcut_icon)
         val customIconRow = view.findViewById<View>(R.id.automation_custom_icon_row)
         val customIconPick = view.findViewById<Button>(R.id.automation_pick_icon)
         val customIconStatus = view.findViewById<TextView>(R.id.automation_icon_status)
@@ -273,9 +272,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
         val triggerAppBtn = view.findViewById<Button>(R.id.automation_trigger_app_btn)
         val triggerAppSummary = view.findViewById<TextView>(R.id.automation_trigger_app_summary)
         val bindTrigger = view.findViewById<CheckBox>(R.id.automation_bind_trigger)
-        val triggerGroup = view.findViewById<RadioGroup>(R.id.automation_trigger_group)
-        val triggerGreen = view.findViewById<RadioButton>(R.id.automation_trigger_green)
-        val triggerRed = view.findViewById<RadioButton>(R.id.automation_trigger_red)
         val phoneInput = view.findViewById<EditText>(R.id.automation_phone)
         val packageInput = view.findViewById<EditText>(R.id.automation_package)
         val isSmsCheck = view.findViewById<CheckBox>(R.id.automation_is_sms)
@@ -306,12 +302,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
             Automation.TRIGGER_APP_CLOSE,
             Automation.TRIGGER_CALL_END
         )
-        val iconEntries = resources.getStringArray(R.array.automation_icon_entries)
-        val iconValues = resources.getStringArray(R.array.automation_icon_values)
-        val iconAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_item, iconEntries).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
-        shortcutIcon.adapter = iconAdapter
 
         val adapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_item, actionEntries).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -330,10 +320,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
         textInput.setText(existing?.clipboardText ?: "")
         pinShortcut.isChecked = existing?.pinShortcut == true
         shortcutLabel.setText(existing?.shortcutLabel ?: "")
-        existing?.shortcutIcon?.let {
-            val idx = iconValues.indexOf(it).takeIf { i -> i >= 0 } ?: -1
-            if (idx >= 0) shortcutIcon.setSelection(idx)
-        }
         customIconStatus.text = selectedCustomIcon?.let { uri -> uri.substringAfterLast('/') } ?: getString(R.string.automation_icon_none)
         phoneInput.setText(existing?.messageTarget ?: "")
         packageInput.setText(existing?.messageTarget ?: "")
@@ -358,7 +344,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     pinShortcut.visibility = View.VISIBLE
                     val pinVisible = pinShortcut.isChecked
                     shortcutLabel.visibility = if (pinVisible) View.VISIBLE else View.GONE
-                    shortcutIcon.visibility = if (pinVisible) View.VISIBLE else View.GONE
                     customIconRow.visibility = if (pinVisible) View.VISIBLE else View.GONE
                     textInput.visibility = View.GONE
                     appRow.visibility = View.GONE
@@ -373,7 +358,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     urlInput.visibility = View.GONE
                     pinShortcut.visibility = View.GONE
                     shortcutLabel.visibility = View.GONE
-                    shortcutIcon.visibility = View.GONE
                     customIconRow.visibility = View.GONE
                     textInput.visibility = View.VISIBLE
                     appRow.visibility = View.GONE
@@ -388,7 +372,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     urlInput.visibility = View.GONE
                     pinShortcut.visibility = View.GONE
                     shortcutLabel.visibility = View.GONE
-                    shortcutIcon.visibility = View.GONE
                     customIconRow.visibility = View.GONE
                     textInput.visibility = View.VISIBLE
                     appRow.visibility = View.GONE
@@ -403,7 +386,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     urlInput.visibility = View.GONE
                     pinShortcut.visibility = View.GONE
                     shortcutLabel.visibility = View.GONE
-                    shortcutIcon.visibility = View.GONE
                     customIconRow.visibility = View.GONE
                     textInput.visibility = View.GONE
                     appRow.visibility = View.GONE
@@ -418,7 +400,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     urlInput.visibility = View.GONE
                     pinShortcut.visibility = View.GONE
                     shortcutLabel.visibility = View.GONE
-                    shortcutIcon.visibility = View.GONE
                     customIconRow.visibility = View.GONE
                     textInput.visibility = View.GONE
                     appRow.visibility = View.GONE
@@ -435,13 +416,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
             triggerAppRow.visibility = if (triggerNeedsApp) View.VISIBLE else View.GONE
         }
 
-        fun updateTriggerEnabled() {
-            val enabled = bindTrigger.isChecked
-            for (i in 0 until triggerGroup.childCount) {
-                triggerGroup.getChildAt(i).isEnabled = enabled
-            }
-        }
-
         nameInput.setText(existing?.name ?: "")
         val actionIdx = existing?.let { actionValues.indexOf(it.action).takeIf { i -> i >= 0 } } ?: 0
         spinner.setSelection(actionIdx)
@@ -449,16 +423,10 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
         appSummary.text = selectedComponent?.let { loadAppLabel(ctx, it) } ?: getString(R.string.trigger_app_not_set)
 
         val binding = existing?.triggerBinding ?: Automation.BINDING_NONE
-        bindTrigger.isChecked = binding != Automation.BINDING_NONE
-        when (binding) {
-            Automation.BINDING_GREEN -> triggerGreen.isChecked = true
-            Automation.BINDING_RED -> triggerRed.isChecked = true
-        }
+        bindTrigger.isChecked = binding == Automation.BINDING_GREEN
         val triggerType = existing?.triggerType ?: Automation.TRIGGER_NONE
         val triggerIdx = triggerValues.indexOf(triggerType).takeIf { it >= 0 } ?: 0
         triggerSpinner.setSelection(triggerIdx)
-        updateTriggerEnabled()
-        updateFieldVisibility()
         updateFieldVisibility()
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -473,7 +441,6 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-        bindTrigger.setOnCheckedChangeListener { _, _ -> updateTriggerEnabled() }
         pinShortcut.setOnCheckedChangeListener { _, _ -> updateFieldVisibility() }
         scheduleEnable.setOnCheckedChangeListener { _, _ -> updateFieldVisibility() }
         scheduleTimeBtn.setOnClickListener {
@@ -494,6 +461,8 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                 addCategory(Intent.CATEGORY_OPENABLE)
                 type = "image/*"
                 putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
             }
             iconPicker.launch(intent)
         }
@@ -556,11 +525,7 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     return@setOnClickListener
                 }
                 val bindingValue = if (bindTrigger.isChecked) {
-                    when {
-                        triggerGreen.isChecked -> Automation.BINDING_GREEN
-                        triggerRed.isChecked -> Automation.BINDING_RED
-                        else -> Automation.BINDING_NONE
-                    }
+                    Automation.BINDING_GREEN
                 } else {
                     Automation.BINDING_NONE
                 }
@@ -572,7 +537,7 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     this.clipboardText = textInput.text.toString()
                     this.pinShortcut = pinShortcut.isChecked
                     this.shortcutLabel = shortcutLabel.text.toString().trim().ifEmpty { null }
-                    this.shortcutIcon = iconValues.getOrNull(shortcutIcon.selectedItemPosition)
+                    this.shortcutIcon = null
                     this.shortcutIconUri = selectedCustomIcon
                     this.messageText = textInput.text.toString()
                     this.messageTarget = phoneInput.text.toString().ifBlank { packageInput.text.toString().ifBlank { null } }
@@ -588,6 +553,11 @@ class AutomationFragment : SettingsBasePreferenceFragment(),
                     this.triggerBinding = bindingValue
                 }
                 AutomationStore.upsert(ctx, updated)
+                if (updated.action == AutomationExecutor.ACTION_OPEN_URL &&
+                    updated.pinShortcut
+                ) {
+                    AutomationExecutor.pinUrlShortcut(ctx, updated)
+                }
                 rebuildList()
                 AutomationScheduler.reschedule(ctx)
                 AutomationEventService.startOrStop(ctx)

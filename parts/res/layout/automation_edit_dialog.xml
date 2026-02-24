@@ -82,13 +82,6 @@
             android:inputType="textCapSentences"
             android:visibility="gone" />
 
-        <Spinner
-            android:id="@+id/automation_shortcut_icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:visibility="gone" />
-
         <LinearLayout
             android:id="@+id/automation_custom_icon_row"
             android:layout_width="match_parent"
@@ -256,35 +249,5 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/automation_bind_trigger" />
-
-        <RadioGroup
-            android:id="@+id/automation_trigger_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-
-            <RadioButton
-                android:id="@+id/automation_trigger_green"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/automation_trigger_green" />
-
-            <RadioButton
-                android:id="@+id/automation_trigger_red"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/automation_trigger_red" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/automation_trigger_hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/automation_trigger_hint" />
     </LinearLayout>
 </ScrollView>

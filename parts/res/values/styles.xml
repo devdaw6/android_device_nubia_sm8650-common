@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <style name="Theme.NubiaParts" parent="@style/Theme.SubSettingsBase">
+        <!-- Bind controls to Monet/system accent instead of a hardcoded app color. -->
+        <item name="colorAccent">@*android:color/accent_device_default</item>
+        <item name="android:colorAccent">@*android:color/accent_device_default</item>
+        <item name="colorControlActivated">@*android:color/accent_device_default</item>
+        <item name="android:colorControlActivated">@*android:color/accent_device_default</item>
+        <item name="colorControlHighlight">@androidprv:color/materialColorControlHighlight</item>
+        <item name="android:colorControlHighlight">@androidprv:color/materialColorControlHighlight</item>
+    </style>
+</resources>

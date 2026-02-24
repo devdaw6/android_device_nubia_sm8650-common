@@ -30,18 +30,6 @@
         <item>@string/automation_action_force_stop</item>
     </string-array>
 
-    <string-array name="automation_icon_entries">
-        <item>@string/automation_icon_globe</item>
-        <item>@string/automation_icon_star</item>
-        <item>@string/automation_icon_bolt</item>
-    </string-array>
-
-    <string-array name="automation_icon_values" translatable="false">
-        <item>globe</item>
-        <item>star</item>
-        <item>bolt</item>
-    </string-array>
-
     <string-array name="automation_trigger_entries">
         <item>@string/automation_trigger_none</item>
         <item>@string/automation_trigger_app_open</item>
