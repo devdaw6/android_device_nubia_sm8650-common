@@ -18,12 +18,17 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.os.RemoteException
+import android.os.UserHandle
 import android.util.Log
+import org.lineageos.settings.utils.getInt
+import org.lineageos.settings.utils.getString
 
 class RecentsKillService : Service() {
 
     private val mainHandler = Handler(Looper.getMainLooper())
     private val pendingTaskPackages = HashMap<Int, String>()
+    private var chinaModeEnabled = false
+    private var whitelist: Set<String> = emptySet()
     private var homePackageName: String? = null
     private var isListenerRegistered = false
 
@@ -31,6 +36,9 @@ class RecentsKillService : Service() {
         override fun onTaskRemovalStarted(taskInfo: RunningTaskInfo) {
             val packageName = extractPackageName(taskInfo) ?: return
             if (!shouldKillOnRecentsRemoval(packageName)) return
+            Log.i(TAG, "Task removal started for $packageName (taskId=${taskInfo.taskId})")
+            // Try to stop immediately to catch background services that linger
+            mainHandler.post { killPackageBackground(packageName) }
 
             synchronized(pendingTaskPackages) {
                 pendingTaskPackages[taskInfo.taskId] = packageName
@@ -49,10 +57,13 @@ class RecentsKillService : Service() {
     override fun onCreate() {
         super.onCreate()
         homePackageName = resolveHomePackage()
+        loadState()
         registerTaskStackListener()
+        Log.i(TAG, "RecentsKillService created, chinaMode=$chinaModeEnabled")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        loadState()
         if (!isListenerRegistered) {
             registerTaskStackListener()
         }
@@ -95,14 +106,20 @@ class RecentsKillService : Service() {
     }
 
     private fun shouldKillOnRecentsRemoval(pkg: String): Boolean {
+        if (!chinaModeEnabled) return false
         if (pkg.isBlank()) return false
         if (pkg == applicationContext.packageName) return false
         if (pkg == "android") return false
         if (pkg == "com.android.systemui") return false
         if (pkg == homePackageName) return false
+        if (whitelist.contains(pkg)) return false
 
         val launchIntent = packageManager.getLaunchIntentForPackage(pkg)
-        return launchIntent != null
+        val res = launchIntent != null
+        if (!res) {
+            Log.d(TAG, "Skip $pkg: no launch intent")
+        }
+        return res
     }
 
     private fun killPackageBackground(packageName: String) {
@@ -112,8 +129,37 @@ class RecentsKillService : Service() {
             return
         }
         runCatching {
-            activityManager.killBackgroundProcesses(packageName)
-            Log.i(TAG, "Killed background process after recents removal: $packageName")
+            // Tier 1: IActivityManager binder — equivalent to Settings → Force Stop
+            try {
+                val getSvc = ActivityManager::class.java.getDeclaredMethod("getService")
+                getSvc.isAccessible = true
+                val amBinder = getSvc.invoke(null)!!
+                val forceStop = amBinder.javaClass.getDeclaredMethod(
+                    "forceStopPackage", String::class.java, Int::class.javaPrimitiveType
+                )
+                forceStop.isAccessible = true
+                forceStop.invoke(amBinder, packageName, UserHandle.myUserId())
+                Log.i(TAG, "Force-stopped via binder: $packageName")
+                return
+            } catch (e: Exception) {
+                Log.w(TAG, "forceStop binder failed, fallback", e)
+            }
+            // Tier 2: ActivityManager.forceStopPackage (current user)
+            try {
+                val m = activityManager.javaClass.getDeclaredMethod(
+                    "forceStopPackage", String::class.java
+                )
+                m.isAccessible = true
+                m.invoke(activityManager, packageName)
+                Log.i(TAG, "Force-stopped via ActivityManager: $packageName")
+                return
+            } catch (e: Exception) {
+                Log.w(TAG, "forceStop via ActivityManager failed, fallback killUid", e)
+            }
+            // Tier 3: killUid — kills processes but not alarms/services
+            val uid = packageManager.getApplicationInfo(packageName, 0).uid
+            activityManager.killUid(uid, "china_killer")
+            Log.i(TAG, "killUid fallback for $packageName uid=$uid")
         }.onFailure { e ->
             Log.w(TAG, "Failed to kill background process for $packageName", e)
         }
@@ -125,10 +171,30 @@ class RecentsKillService : Service() {
         return resolveInfo?.activityInfo?.packageName
     }
 
+    private fun loadState() {
+        chinaModeEnabled = getInt(this, "china_killer_enable", 0) == 1
+        whitelist = getString(this, "china_killer_whitelist")
+            ?.split(",")
+            ?.filter { it.isNotBlank() }
+            ?.toSet()
+            ?: emptySet()
+        Log.i(TAG, "China mode=$chinaModeEnabled whitelist=${whitelist.size}")
+    }
+
     companion object {
         private const val TAG = "RecentsKillService"
 
         fun start(context: Context) {
+            context.startService(Intent(context, RecentsKillService::class.java))
+        }
+
+        fun applyChinaMode(context: Context, enabled: Boolean) {
+            val i = Intent(context, RecentsKillService::class.java)
+            context.startService(i)
+            // state is persisted in Settings.Global; service reloads on startCommand
+        }
+
+        fun applyWhitelist(context: Context) {
             context.startService(Intent(context, RecentsKillService::class.java))
         }
     }
