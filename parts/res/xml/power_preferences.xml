@@ -24,7 +24,7 @@
         android:summary="@string/powercap_respect_system_modes_summary"
         android:defaultValue="true" />
 
-    <MultiSelectListPreference
+    <Preference
         android:key="powercap_whitelist"
         android:title="@string/powercap_whitelist_title"
         android:summary="@string/powercap_whitelist_summary" />

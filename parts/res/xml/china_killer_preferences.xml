@@ -11,7 +11,7 @@
         android:title="@string/china_killer_toggle_title"
         android:summary="@string/china_killer_toggle_summary" />
 
-    <MultiSelectListPreference
+    <Preference
         android:key="china_killer_whitelist"
         android:title="@string/china_killer_whitelist_title"
         android:summary="@string/china_killer_whitelist_summary" />

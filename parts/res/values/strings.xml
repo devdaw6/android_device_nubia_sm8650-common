@@ -34,8 +34,12 @@
     <string name="powercap_summary">Cap CPU/GPU clocks by default; selected apps can run uncapped</string>
     <string name="powercap_enable_title">Enable clock caps</string>
     <string name="powercap_enable_summary">Lower max CPU/GPU clocks to save battery</string>
-    <string name="powercap_whitelist_title">Apps with uncapped performance</string>
-    <string name="powercap_whitelist_summary">Listed apps run uncapped while open</string>
+    <string name="powercap_whitelist_title">Exclusions</string>
+    <string name="powercap_whitelist_summary">Apps excluded from clock caps</string>
+    <string name="powercap_whitelist_summary_count">Excluded apps: %1$d</string>
+    <string name="powercap_whitelist_search_hint">Search apps</string>
+    <string name="powercap_whitelist_no_results">No apps found</string>
+    <string name="powercap_whitelist_save">Save</string>
     <string name="powercap_allow_full_title">Uncap listed apps</string>
     <string name="powercap_allow_full_summary">Remove clock caps while a listed app is open</string>
     <string name="powercap_respect_system_modes_title">Respect system performance modes</string>
@@ -103,7 +107,11 @@
     <string name="china_killer_toggle_summary">Force-stop apps when removed from recents (CN stock behavior)</string>
     <string name="china_killer_whitelist_title">Exclusions</string>
     <string name="china_killer_whitelist_summary">Apps excluded from force-stop</string>
+    <string name="china_killer_whitelist_summary_count">Excluded apps: %1$d</string>
     <string name="china_killer_whitelist_disabled">Exclusions are disabled while the toggle is off</string>
+    <string name="china_killer_whitelist_search_hint">Search apps</string>
+    <string name="china_killer_whitelist_no_results">No apps found</string>
+    <string name="china_killer_whitelist_save">Save</string>
     <string name="automation_presets_title">Quick presets</string>
     <string name="automation_presets_summary">Add morning/evening/reminder actions in one tap</string>
     <string name="automation_presets_hint">Pick templates now; you can edit them later in the list.</string>

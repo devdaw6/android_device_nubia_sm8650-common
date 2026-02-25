@@ -34,8 +34,12 @@
     <string name="powercap_summary">По умолчанию ограничивает частоты CPU/GPU; выбранные приложения работают без ограничений</string>
     <string name="powercap_enable_title">Включить лимит частот</string>
     <string name="powercap_enable_summary">Снижать максимальные частоты CPU/GPU для экономии батареи</string>
-    <string name="powercap_whitelist_title">Приложения без ограничений</string>
-    <string name="powercap_whitelist_summary">Приложения из списка работают без ограничений, пока открыты</string>
+    <string name="powercap_whitelist_title">Исключения</string>
+    <string name="powercap_whitelist_summary">Приложения, исключённые из лимита частот</string>
+    <string name="powercap_whitelist_summary_count">Исключено приложений: %1$d</string>
+    <string name="powercap_whitelist_search_hint">Поиск приложений</string>
+    <string name="powercap_whitelist_no_results">Ничего не найдено</string>
+    <string name="powercap_whitelist_save">Сохранить</string>
     <string name="powercap_allow_full_title">Снимать лимит для приложений из списка</string>
     <string name="powercap_allow_full_summary">Убирать ограничение частот, когда открыто приложение из списка</string>
     <string name="powercap_respect_system_modes_title">Учитывать системные режимы производительности</string>
@@ -103,7 +107,11 @@
     <string name="china_killer_toggle_summary">Принудительно останавливать приложение при свайпе из недавних (поведение CN-стока)</string>
     <string name="china_killer_whitelist_title">Исключения</string>
     <string name="china_killer_whitelist_summary">Приложения, исключённые из форс-стопа</string>
+    <string name="china_killer_whitelist_summary_count">Исключено приложений: %1$d</string>
     <string name="china_killer_whitelist_disabled">Исключения неактивны, пока тумблер выключен</string>
+    <string name="china_killer_whitelist_search_hint">Поиск приложений</string>
+    <string name="china_killer_whitelist_no_results">Ничего не найдено</string>
+    <string name="china_killer_whitelist_save">Сохранить</string>
     <string name="automation_presets_title">Быстрые шаблоны</string>
     <string name="automation_presets_summary">Добавить сценарии «Утро/Вечер/Напоминание» одним нажатием</string>
     <string name="automation_presets_hint">Выберите шаблоны сейчас — позже их можно изменить в списке.</string>
